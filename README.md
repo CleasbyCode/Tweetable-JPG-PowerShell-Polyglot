@@ -6,18 +6,7 @@ A simple command-line tool to embed a PowerShell script within a JPG image to cr
 ***{Image Credit: [@no_dualitat](https://twitter.com/no_dualitat/status/1701678793172082849)}***  
 ***Image embedded with PowerShell script. Simple Fibonacci number sequence program.***  
 
-
-
-*(If you want to embed more data into an image for Twitter (up to 5MB) then please try **[pdvzip](https://github.com/CleasbyCode/pdvzip)**,  
-or if you want to save AI image prompts (***Midjourney***) into a JPG image file (viewable as a basic Web page), then please try **[imgprmt](https://github.com/CleasbyCode/imgprmt)).***
-
-**xif** works on **Linux** and **Windows**.  
-
-Your embedded file is stored within the ***ICC Profile*** of the ***JPG*** image file.  
-
-![Demo Image_b](https://github.com/CleasbyCode/xif/blob/main/demo_image/icc_dem.png)  
-
-[***Video Demo***](https://youtu.be/SIMZe5Ix5Y8)
+**jpws** works on **Linux** and **Windows**.  
 
 Compile and run the program under **Windows** or **Linux**  
 
@@ -32,7 +21,7 @@ $ ./jpws
 Usage:  jpws  <jpg_image>  <script_file>
         jpws  --info
 
-$ ./jpws  image.jpg  my_powershell_script.ps1
+$ ./jpws  image.jpg  fib.ps1
 
  Created output file: "jpws_img.jpg 3156 Bytes"
  You can now tweet this image.
