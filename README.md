@@ -28,7 +28,7 @@ $ ./jpws  spiral.jpg  fibonacci.ps1
 ## Images Selection for Your PowerShell Script
 
 As a requirement for this program, due to image encoding issues, you need to download images from Twitter to use with this program when
-embedding your ***PowerShell*** script. There are a wide variety of images posted on ***Twitter***, epecially AI generated images created by ***Midjourney***.  
+embedding your ***PowerShell*** script. There are a wide variety of images posted on ***Twitter***, epecially cool AI generated images created by ***Midjourney***.  
 
 When saving an image from Twitter, make sure to click on the image first, so as to fully expand it, then save it, so that you get the full image
 dimension size. You will probably have to download & try a few images before a compatible one is found for ***jpws***. This incompatiblity is caused 
