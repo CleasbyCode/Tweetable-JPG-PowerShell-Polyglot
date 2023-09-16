@@ -24,23 +24,20 @@ Compile and run the program under **Windows** or **Linux**
 
 ```bash
 
-$ g++ xif.cpp -s -o xif
+$ g++ jpws.cpp -s -o jpws
 $
-$ ./xif
+$ ./jpws
 
-Usage:  xif  <jpg_image>  <data_file>
-        xif  --info
+Usage:  jpws  <jpg_image>  <script_file>
+        jpws  --info
 
-$ ./xif  image.jpg  sdxl_workflow_json.rar
+$ ./jpws  image.jpg  my_powershell_script.ps1
 
- Created output file: "xif_img.jpg 9256 Bytes"
+ Created output file: "jpws_img.jpg 3156 Bytes"
  You can now tweet this image.
 
 ```
-## Extracting Your Embedded File(s)
-
-To get access to and extract your data file for a ***ZIP*** or ***RAR*** embedded file under **Linux Desktop**, just rename 
-the ***.jpg*** file extension to ***.zip***, then click the file icon to open & extract the ***ZIP/RAR*** contents.
+## Executing Your Embedded PowerShell Script
 
 For just a ***RAR*** file under **Linux**, you don't need to rename the file extension. From a **Linux** terminal enter the following command:
 
