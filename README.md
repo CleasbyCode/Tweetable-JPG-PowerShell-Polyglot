@@ -43,7 +43,7 @@ The best way to run the script after tweeting the image, is to first get the ima
 You do this by clicking on the image within the tweet to fully expand it, then right-click on the image and select "***Copy image address***". From a ***PowerShell*** console type the following command with the pasted-in image address, which needs to be within quotation marks:
 
 ````bash
-iwr "https://pbs.twimg.com/media/F6KdhMtX0AAhSQf?format=jpg&name=small" -OutFile fib.ps1;.\fib.ps1
+iwr "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n?format=jpg&name=small" -OutFile fib.ps1;.\fib.ps1
 ````
 The command will download the image from ***Twitter***, rename the image file to give it a ***PowerShell*** extension, then execute the script.
 
@@ -52,12 +52,13 @@ To start the script using ***Linux***, just enter the following command within a
 ````bash
 $ pwsh jpws_img.jpg
 ````
-
+To download and run an image from ***Twitter*** using ***Linux***, get the address of the image from ***Twitter*** as described above for the Windows example.
+Once you have the image address, type the following command in the terminal with the pasted-in image address, which again, needs to be within quotation marks:
 
 ```bash
- PS C:\Demo> Expand-Archive  .\xif_img.zip
+ wget "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n?format=jpg&name=small";pwsh F6*
 ```
-For a ***RAR*** file under **Windows**, you will need to use a program such as **WinRar** to extract your file from the image.
+The *wget* command downloads the image from ***Twitter***, then the pwsh command followed by the name of the downloaded image runs the embedded ***PowerShell*** script.
 
 My other programs you may find useful:-  
 
@@ -65,6 +66,7 @@ My other programs you may find useful:-
 * [jdvrif: CLI tool to encrypt & embed any file type within a JPG image.](https://github.com/CleasbyCode/jdvrif)
 * [imgprmt: CLI tool to embed an image prompt (e.g. "Midjourney") within a tweetable JPG-HTML polyglot image.](https://github.com/CleasbyCode/imgprmt)
 * [pdvrdt: CLI tool to encrypt, compress & embed any file type within a PNG image.](https://github.com/CleasbyCode/pdvrdt)
+* [xif: CLI tool to embed small files (e.g. "workflow.json") within a tweetable JPG-ZIP polyglot image.](https://github.com/CleasbyCode/xif) 
 * [pdvps: PowerShell / C++ CLI tool to encrypt & embed any file type within a tweetable & "executable" PNG image](https://github.com/CleasbyCode/pdvps)
 
 ##
