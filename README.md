@@ -37,16 +37,15 @@ by the presence within the ***JPG*** image file of the *end-comment block string
 
 To run the script within ***Windows***, after successfully embedding your ***PowerShell*** script within a compatible image, you need to rename the *".jpg"* file extension to *".ps1"*. You can then run the script either from a ***PowerShell*** console, e.g. *PS C:\Users\Demo> .\\jpws_img.ps1* or run it from the ***Desktop*** by right-clicking the file icon and selecting *Run with PowerShell*.  
 
-The best way to execute the script after tweeting the image, is to first get the image address from ***Twitter***. You do this by first clicking on the image within the tweet to fully expand it, then right-click on the image and select "***Copy image address***". From a ***PowerShell*** console type the following command with the pasted-in image address, which needs to be within quote marks:
+The best way to run the script after tweeting the image, is to first get the image address from ***Twitter***. You do this by clicking on the image within the tweet to fully expand it, then right-click on the image and select "***Copy image address***". From a ***PowerShell*** console type the following command with the pasted-in image address, which needs to be within quote marks:
 
 ````bash
-iwr "https://pbs.twimg.com/media/F6KdhMtX0AAhSQf?format=jpg&name=small" -OutFile Twitter_img.ps1;.\Twitter_img.ps1
+iwr "https://pbs.twimg.com/media/F6KdhMtX0AAhSQf?format=jpg&name=small" -OutFile fib_img.ps1;.\fib_img.ps1
 
 ````
-The command downloads the image from Twitter, renames the image file to give it a PowerShell extension, then proceedes to execute the script.
+The command downloads the image from Twitter, renames the image file to give it a PowerShell extension, then executes the script.
 
 
-For an embedded ***ZIP*** file under **Windows**, rename the ***.jpg*** file extension to ***.zip***. From a console type the following command:
 
 ```bash
  PS C:\Demo> Expand-Archive  .\xif_img.zip .
