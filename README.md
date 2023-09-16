@@ -21,9 +21,9 @@ $ ./jpws
 Usage:  jpws  <jpg_image>  <script_file>
         jpws  --info
 
-$ ./jpws  image.jpg  fib.ps1
+$ ./jpws  spiral.jpg  fibonacci.ps1
 
- Created output file: "jpws_img.jpg 3156 Bytes"
+ Created output file: "jpws_img.jpg 59332 Bytes"
  You can now tweet this image.
 
 ```
