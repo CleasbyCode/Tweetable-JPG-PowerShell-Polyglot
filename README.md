@@ -31,7 +31,7 @@ As a requirement for this program, due to image encoding issues, you need to fir
 
 When saving an image from ***Twitter***, make sure to click on the image first, so as to fully expand it, then save it, so that you get the full image
 dimension size. You will probably have to download and try a few images before a compatible one is found for. The incompatiblity issue is caused 
-by the presence within the ***JPG*** image file of the ***PowerShell*** *end-comment block string* ***"#>"***, which breaks the script when we execute it from the image.
+by the presence within the ***JPG*** image file of the *end-comment block string* ***"#>"***, which breaks the script when we execute it from the image.
 
 ## Executing Your Embedded ***PowerShell*** Script From the Image File
 
