@@ -35,7 +35,7 @@ by the presence within the ***JPG*** image file of the *end-comment block string
 
 Within the ***Images*** folder of this repo, I have included a few compatible images for you to use. 
 
-## Executing Your Embedded ***PowerShell*** Script From the Image File
+## Executing Your Embedded ***PowerShell*** Script From the Image
 
 To run the script within ***Windows*** after successfully embedding your ***PowerShell*** script in a compatible image, you need to rename the *".jpg"* file extension to *".ps1"*. You can then run the script either from a ***PowerShell*** console, e.g. *PS C:\Users\Demo> .\\jpws_img.ps1* or start it from the ***Desktop*** by right-clicking the file icon and selecting *"Run with PowerShell"*.  
 
