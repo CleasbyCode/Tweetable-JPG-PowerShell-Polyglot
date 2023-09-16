@@ -35,7 +35,7 @@ by the presence within the ***JPG*** image file of the *end-comment block string
 
 ## Executing Your Embedded ***PowerShell*** Script From the Image File
 
-To run the script within ***Windows***, after successfully embedding your ***PowerShell*** script within a compatible image, you need to rename the *".jpg"* file extension to *".ps1"*. You can then run the script either from a ***PowerShell*** console, e.g. *PS C:\Users\Demo> .\\jpws_img.ps1* or run it from the ***Desktop*** by right-clicking the file icon and selecting *Run with PowerShell*.  
+To run the script within ***Windows***, after successfully embedding your ***PowerShell*** script within a compatible image, you need to rename the *".jpg"* file extension to *".ps1"*. You can then run the script either from a ***PowerShell*** console, e.g. *PS C:\Users\Demo> .\\jpws_img.ps1* or start it from the ***Desktop*** by right-clicking the file icon and selecting *"Run with PowerShell"*.  
 
 The best way to run the script after tweeting the image, is to first get the image address from ***Twitter***. You do this by clicking on the image within the tweet to fully expand it, then right-click on the image and select "***Copy image address***". From a ***PowerShell*** console type the following command with the pasted-in image address, which needs to be within quote marks:
 
@@ -48,7 +48,7 @@ The command downloads the image from Twitter, renames the image file to give it 
 
 
 ```bash
- PS C:\Demo> Expand-Archive  .\xif_img.zip .
+ PS C:\Demo> Expand-Archive  .\xif_img.zip
 ```
 For a ***RAR*** file under **Windows**, you will need to use a program such as **WinRar** to extract your file from the image.
 
