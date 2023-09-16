@@ -37,7 +37,7 @@ Within the ***Images*** folder of this repo, I have included a few compatible im
 
 ## Executing Your Embedded ***PowerShell*** Script From the Image
 
-To run the script within ***Windows*** after successfully embedding your ***PowerShell*** script in a compatible image, you need to rename the *".jpg"* file extension to *".ps1"*. You can then start the script either from a ***PowerShell*** console, e.g. *PS C:\Users\Demo> .\\jpws_img.ps1* or start it from the ***Desktop*** by right-clicking the file icon and selecting *"Run with PowerShell"*.  
+To run the script within ***Windows*** after successfully embedding your ***PowerShell*** script in a compatible image, you need to rename the *".jpg"* file extension to *".ps1"*. You can then start the script either from a ***PowerShell*** console, e.g. *PS C:\Users\Demo> .\\jpws_img.ps1* or start it from the ***Windows*** desktop by right-clicking the file icon and selecting *"Run with PowerShell"*.  
 
 The best way to run the script after tweeting the image, is to first get the image address from ***Twitter***. You do this by clicking on the image within the tweet to fully expand it, then right-click on the image and select "***Copy image address***". From a ***PowerShell*** console type the following command with the pasted-in image address, which needs to be within quote marks:
 
