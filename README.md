@@ -6,8 +6,6 @@ A simple command-line tool to embed a ***PowerShell*** script within a ***JPG***
 ***{Image Credit: [@no_dualitat](https://twitter.com/no_dualitat/status/1701678793172082849)}***  
 ***Image embedded with PowerShell script. Simple Fibonacci number sequence program.***  
 
-***jpws*** works on ***Linux*** and ***Windows***.  
-
 Compile and run the program under ***Windows*** or ***Linux***  
 
 ## Usage (***Linux*** Example)
