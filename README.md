@@ -30,13 +30,18 @@ $ ./jpws  spiral.jpg  fibonacci.ps1
 ## Images Selection for Your PowerShell Script
 
 As a requirement for this program, due to image encoding issues, you need to download images from Twitter to use with this program when
-embedding your ***PowerShell*** script. There are a wide varioty of posted images on ***Twitter***, epecially AI generated images created by ***Midjourney***.  
+embedding your ***PowerShell*** script. There are a wide variety of images posted on ***Twitter***, epecially AI generated images created by ***Midjourney***.  
 
-When saving an image from Twitter, make sure to click on the image first, so as to fully expand it. Then save it, so that you get the full image
-dimension size. You will probably have to download and try a few images before a compatible one is found for ***jpws***. This incompatiblity is caused  
-by any occurance within the image file of the PowerShell end-comment block string "#>", which will break the script when we execute it from the image.
+When saving an image from Twitter, make sure to click on the image first, so as to fully expand it, then save it, so that you get the full image
+dimension size. You will probably have to download & try a few images before a compatible one is found for ***jpws***. This incompatiblity is caused 
+by the preseance within the image file of the ***PowerShell*** *end-comment block* string "#>", which will break the script when we execute it from the image.
 
-## Executing Your Embedded ***PowerShell*** Script
+## Executing Your Embedded ***PowerShell*** Script From the Image File
+
+After sucesscully embedding your ***PowerShell*** script within a compatible image, to run the script from Windows, you need to rename the *".jpg"*  
+file extenstion to *".ps1"*. You can then run the script either from a PowerShell console, e.g. *PS C:\Users\Demo> \.jpws_img.ps1* or run it from
+the Desktop by right-clicking the file icon and select *Run with PowerShell*.
+
 
 For just a ***RAR*** file under **Linux**, you don't need to rename the file extension. From a **Linux** terminal enter the following command:
 
