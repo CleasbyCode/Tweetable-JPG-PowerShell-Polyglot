@@ -27,6 +27,15 @@ $ ./jpws  spiral.jpg  fibonacci.ps1
  You can now tweet this image.
 
 ```
+## Images Selection for Your PowerShell Script
+
+As a requirement for this program, due to image encoding issues, you need to download images from Twitter to use with this program when
+embedding your ***PowerShell*** script. There are a wide varioty of posted images on ***Twitter***, epecially AI generated images created by ***Midjourney***.  
+
+When saving an image from Twitter, make sure to click on the image first, so as to fully expand it. Then save it, so that you get the full image
+dimension size. You will probably have to download and try a few images before a compatible one is found for ***jpws***. This incompatiblity is caused  
+by any occurance within the image file of the PowerShell end-comment block string "#>", which will break the script when we execute it from the image.
+
 ## Executing Your Embedded ***PowerShell*** Script
 
 For just a ***RAR*** file under **Linux**, you don't need to rename the file extension. From a **Linux** terminal enter the following command:
