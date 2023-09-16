@@ -6,7 +6,8 @@ Share your PowerShell embedded image on Twitter or Reddit (Desktop/Browser only 
 
 ![Demo Image_a](https://github.com/CleasbyCode/jpws/blob/main/demo_image/fib.jpg)   
 ***{Image Credit: [@no_dualitat](https://twitter.com/no_dualitat/status/1701678793172082849)}***
-}
+
+
 *(If you want to embed more data into an image for Twitter (up to 5MB) then please try **[pdvzip](https://github.com/CleasbyCode/pdvzip)**,  
 or if you want to save AI image prompts (***Midjourney***) into a JPG image file (viewable as a basic Web page), then please try **[imgprmt](https://github.com/CleasbyCode/imgprmt)).***
 
