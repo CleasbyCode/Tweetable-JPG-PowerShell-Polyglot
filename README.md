@@ -31,7 +31,7 @@ As a requirement for this program, due to image encoding issues, you need to dow
 embedding your ***PowerShell*** script. There are a wide variety of images posted on ***Twitter***, epecially cool AI generated images created by ***Midjourney***.  
 
 When saving an image from Twitter, make sure to click on the image first, so as to fully expand it, then save it, so that you get the full image
-dimension size. You will probably have to download & try a few images before a compatible one is found for ***jpws***. This incompatiblity is caused 
+dimension size. You will probably have to download & try a few images before a compatible one is found for ***jpws***. The incompatiblity issue is caused 
 by the preseance within the image file of the ***PowerShell*** *end-comment block* string "#>", which will break the script when we execute it from the image.
 
 ## Executing Your Embedded ***PowerShell*** Script From the Image File
