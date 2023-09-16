@@ -1,6 +1,6 @@
 # jpws
 
-A simple command-line tool to embed a PowerShell script within a JPG image to create a tweetable JPG-PowerShell polyglot image.
+A command-line tool to embed a PowerShell script within a JPG image to create a tweetable JPG-PowerShell polyglot image.
 
 Share your PowerShell embedded image on Twitter or Reddit (Desktop/Browser only for Reddit).
 
