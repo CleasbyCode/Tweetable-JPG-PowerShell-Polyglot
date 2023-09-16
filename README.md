@@ -33,21 +33,24 @@ When saving an image from ***Twitter***, make sure to click on the image first, 
 dimension size. You will probably have to download and try a few images before a compatible one is found. The incompatiblity issue is caused 
 by the presence within the ***JPG*** image file of the *end-comment block string* ***"#>"***, which breaks the script when we execute it from the image.  
 
-I have included a few compatible images for you to use, within the **Images** folder of this repo.
+Within the ***Images*** folder of this repo, I have included a few compatible images for you to use. 
 
 ## Executing Your Embedded ***PowerShell*** Script From the Image File
 
-To run the script within ***Windows***, after successfully embedding your ***PowerShell*** script within a compatible image, you need to rename the *".jpg"* file extension to *".ps1"*. You can then run the script either from a ***PowerShell*** console, e.g. *PS C:\Users\Demo> .\\jpws_img.ps1* or start it from the ***Desktop*** by right-clicking the file icon and selecting *"Run with PowerShell"*.  
+To run the script within ***Windows*** after successfully embedding your ***PowerShell*** script in a compatible image, you need to rename the *".jpg"* file extension to *".ps1"*. You can then run the script either from a ***PowerShell*** console, e.g. *PS C:\Users\Demo> .\\jpws_img.ps1* or start it from the ***Desktop*** by right-clicking the file icon and selecting *"Run with PowerShell"*.  
 
 The best way to run the script after tweeting the image, is to first get the image address from ***Twitter***. You do this by clicking on the image within the tweet to fully expand it, then right-click on the image and select "***Copy image address***". From a ***PowerShell*** console type the following command with the pasted-in image address, which needs to be within quote marks:
 
 ````bash
-iwr "https://pbs.twimg.com/media/F6KdhMtX0AAhSQf?format=jpg&name=small" -OutFile fib_img.ps1;.\fib_img.ps1
-
+iwr "https://pbs.twimg.com/media/F6KdhMtX0AAhSQf?format=jpg&name=small" -OutFile fib.ps1;.\fib.ps1
 ````
-The command downloads the image from Twitter, renames the image file to give it a PowerShell extension, then executes the script.
+The command will download the image from ***Twitter***, rename the image file to give it a ***PowerShell*** extension, then execute the script.
 
-To start the script using Linux, just enter this command within a terminal: *$ pwsh jpws_img.jpg* (There is no need to change the file extension with Linux).
+To start the script using ***Linux***, just enter this command within a terminal. There is no need to change the file extension with ***Linux***. 
+
+````bash
+*$ pwsh jpws_img.jpg
+````
 
 
 ```bash
