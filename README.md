@@ -1,16 +1,16 @@
 # jpws
 
-A simple command-line tool to embed a PowerShell script within a JPG image to create a tweetable JPG-PowerShell polyglot image. Share your PowerShell embedded image on **Twitter** or **Reddit** (Desktop/Browser only for Reddit).
+A simple command-line tool to embed a ***PowerShell*** script within a ***JPG*** image to create a tweetable ***JPG-PowerShell*** polyglot image. Share your ***PowerShell*** embedded image on ***Twitter** or ***Reddit*** (Desktop/Browser only for ***Reddit***).
 
 ![Demo Image_a](https://github.com/CleasbyCode/jpws/blob/main/demo_image/fib.jpg)  
 ***{Image Credit: [@no_dualitat](https://twitter.com/no_dualitat/status/1701678793172082849)}***  
 ***Image embedded with PowerShell script. Simple Fibonacci number sequence program.***  
 
-**jpws** works on **Linux** and **Windows**.  
+***jpws*** works on ***Linux*** and ***Windows***.  
 
-Compile and run the program under **Windows** or **Linux**  
+Compile and run the program under ***Windows*** or ***Linux***  
 
-## Usage (Linux Example)
+## Usage (***Linux*** Example)
 
 ```bash
 
@@ -27,7 +27,7 @@ $ ./jpws  spiral.jpg  fibonacci.ps1
  You can now tweet this image.
 
 ```
-## Executing Your Embedded PowerShell Script
+## Executing Your Embedded ***PowerShell*** Script
 
 For just a ***RAR*** file under **Linux**, you don't need to rename the file extension. From a **Linux** terminal enter the following command:
 
