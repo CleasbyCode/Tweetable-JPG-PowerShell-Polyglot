@@ -43,7 +43,7 @@ The best way to run the script after tweeting the image, is to first get the ima
 You do this by clicking on the image within the tweet to fully expand it, then right-click on the image and select "***Copy image address***". From a ***PowerShell*** console type the following command with the pasted-in image address, which needs to be within quotation marks:
 
 ````bash
-iwr "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n?format=jpg&name=small" -OutFile fib.ps1;.\fib.ps1
+iwr -o fibo.ps1 "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n.jpg";.\fibo.ps1
 ````
 The command will download the image from ***Twitter***, rename the image file to give it a ***PowerShell*** extension, then execute the script.
 
@@ -56,7 +56,7 @@ To download and run an image from ***Twitter*** using ***Linux***, get the addre
 Once you have the image address, type the following command in the terminal with the pasted-in image address, which again, needs to be within quotation marks:
 
 ```bash
- wget "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n?format=jpg&name=small";pwsh F6*
+ wget "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n.jpg";pwsh F6*
 ```
 The *wget* command downloads the image from ***Twitter***, then the *pwsh* command followed by the name of the downloaded image runs the embedded ***PowerShell*** script.
 
