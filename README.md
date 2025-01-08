@@ -23,10 +23,13 @@ Saved "PowerShell-embedded" JPG image: jpws_10247.jpg (321081 bytes).
 
 Complete!
 ```
-## How It Works, Image Compatibilty, Issues and Limitations.
+## How It Works
 
-In a nutshell, PowerShell comment blocks. An open comment block is required as near to the start of the image file as possible. This is acheived by writing the open comment block within the JFIF header, which is conviently preserved by X/Twitter. The PowerShell script is stored at the end of the color profile data of the JPG image, which is also preserved by X/Twitter. We need the first PowerShell open comment block within the JFIF header to ignore the ICC profile header and color profile data. We then have a close comment block at the end of the profile data, followed by our PowerShell script, which now gets interpreted. At the end of the PowerShell script (still within the color profile segment FFE2) we need another open comment block so that PowerShell ignores the remaining contents of the image file. Finally, we need a close comment block as near to the end of the image file as possible.
-(FFE0) 
+In a nutshell, ***PowerShell comment blocks***. An open-comment block is required as near to the start of the image file as possible. This is acheived by writing the open-comment block within the JFIF header segment (***FFE0***), which is conviently preserved by X/Twitter. The PowerShell script is stored at the end of the color profile data of the JPG image, which is also preserved by X/Twitter. We need the first PowerShell open comment block within the JFIF header to ignore the ICC profile segment header (***FFE2***) and color profile data. We then have a close comment block at the end of the color profile data, followed by our PowerShell script, which now gets interpreted. At the end of the PowerShell script (*still within the color profile segment) we need another open comment block so that PowerShell ignores the remaining contents of the image file. Finally, we need a close comment block as near to the end of the image file as possible. Unfortunaly, things are never as straight forward as we hope. The title for this section should probably of been "How It Sometimes Works".  
+
+## Image Compatibilty, Issues and Limitations.
+
+
 
 As a requirement for this program, due to image encoding issues, you need to first download images from Twitter to use with this program. There are a wide variety of images posted on ***Twitter***, epecially many cool AI generated images created by ***Midjourney***.  
 
