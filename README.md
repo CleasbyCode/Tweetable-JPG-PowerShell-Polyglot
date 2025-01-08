@@ -3,29 +3,27 @@
 A simple command-line tool to embed a ***PowerShell*** script within a ***JPG*** image to create a tweetable ***JPG-PowerShell*** polyglot file. Share your ***PowerShell*** embedded image on ***X/Twitter***.  
 
 ![Demo Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/github_demo_pwsh_fibo.jpg) 
-***{Image Credit: [@no_dualitat](https://twitter.com/no_dualitat/status/1701678793172082849)}***  
-***Image embedded with PowerShell script. Simple Fibonacci number sequence program.***  
-
-Compile and run the program under ***Windows*** or ***Linux***  
-
+***{Image Credit: [@McC3Kat](https://x.com/McC3Kat)}***  
+  
 ## Usage (***Linux*** Example)
 
-```bash
+```console
 
-$ g++ jpws.cpp -s -o jpws
-$
-$ ./jpws
+user1@linuxbox:~/Downloads/jpws-main/src/jpws$ g++ main.cpp -O2 -s -o jpws
+user1@linuxbox:~/Downloads/jpws-main/src/jpws$ sudo cp jpws /usr/bin
 
-Usage:  jpws  <jpg_image>  <script_file>
-        jpws  --info
+user1@linuxbox:~/Desktop$ jpws
 
-$ ./jpws  spiral.jpg  fibonacci.ps1
+Usage: jpws <cover_image> <powershell_script>  
+       jdws --info
 
- Created output file: "jpws_img.jpg 59332 Bytes"
- You can now tweet this image.
+user1@linuxbox:~/Desktop$ jpws cover_image23.jpg fibo.ps1
 
+Saved "PowerShell-embedded" JPG image: jpws_10247.jpg (321081 bytes).
+
+Complete!
 ```
-## Image Selection for Your PowerShell Script
+## How It Works, Image Compatibilty, Issues and Limitations.
 
 As a requirement for this program, due to image encoding issues, you need to first download images from Twitter to use with this program. There are a wide variety of images posted on ***Twitter***, epecially many cool AI generated images created by ***Midjourney***.  
 
