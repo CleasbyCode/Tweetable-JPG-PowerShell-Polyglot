@@ -41,7 +41,7 @@ To start with, always use images found on X/Twitter for your cover image. If you
 
 The cover image must not contain any occurance of the PowerShell close-comment block string (#>), apart from the ones inserted by the program, as this will cause the PowerShell script to fail. Unfortunatly, with the comment-block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the image data is quite high. The larger the image, the greather the probablity of multiple hits. I would not even consider trying images larger than 400KB. 
 
-It's possible to edit out close-comment block strings within the image data by decreasing the image dimensions using a editor such as GIMP. 
+It's possible to edit out close-comment block strings within the image data by decreasing the image dimensions using an editor such as GIMP. 
 
 
 
