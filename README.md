@@ -31,6 +31,14 @@ In a nutshell, ***PowerShell comment blocks***. An open-comment block is require
 
 To start with, always use images found on X/Twitter for your cover image. If you want to use an image not originally from that platform, post your image to X/Twitter, then save it. This ensures the JPG image will be encoded by the method used by X/Twitter. Once encoded, the whole image will be *preserved by X/Twitter when posted again on its platform, which is useful for our requirements. **X/Twitter will re-encode part of the image if bytes of the image data are modified. More on that later*. 
 
+The cover image must not contain any occurance of the PowerShell close-comment block string (#>), apart from the ones inserted by the program, as this will cause the PowerShell script to fail. Unfortunatly, with the comment-block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the image data is quite high. The larger the image, the greather the probablity of multiple hits. I would not even consider trying images larger than 400KB. 
+
+It's possible to edit out close-comment block strings within the image data by decreasing the image dimensions using a editor such as GIMP. 
+
+
+
+This repo (currently) contains 32 compatible images, should you find it difficult to find your own compatible image (an image containing no close-comment block strings).
+
 
 When saving an image from ***Twitter***, make sure to click on the image first, so as to fully expand it, then save it, so that you get the full image
 dimension size. You will probably have to download and try a few images before a compatible one is found. The incompatiblity issue is caused 
