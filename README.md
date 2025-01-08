@@ -46,7 +46,7 @@ It's possible to edit out close-comment block strings within the image data by d
 For the final close-comment block, we overwrite the last 13 bytes of image data with a default string "0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9".
 Becuase we are modifying bytes within a section of image data that is compressed & encoded, this will trigger X/Twitter to re-encode some (or all) of these bytes.  
 
-The first 6 bytes of the above string can help with the encoding and are also expendable, so it does not no matter if they are changed or removed, but following 4 bytes "0x23, 0x3E, 0x0D, 0x23" are cruical and need to be preserved by X/Twitter for the PowerShell script to work. For some images, these 4 bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program.  
+The first 6 bytes of the above string can help with the encoding and are also expendable, so it does not matter if they are changed or removed, but the following 4 bytes "0x23, 0x3E, 0x0D, 0x23" are cruical and need to be preserved by X/Twitter for the PowerShell script to work after tweeting the image. For some images, these 4 bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program. We can only find out which images work after tweeting them.
 
 This repo (currently) contains 32 compatible images, should you find it difficult to find your own compatible image.  
 
