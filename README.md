@@ -89,7 +89,7 @@ To run the script embedded with the image using ***Linux***, just enter the foll
 $ pwsh jpws_85681.jpg
 ```
 For Windows, after downloading the image from X/Twitter, you will need to rename the .jpg extension to .ps1. Also, depending on the Windows/PowerShell execution policy,
-You will probably need to unblock the file before you can run the embedded script.
+you will probably need to unblock the file before you can run the embedded script.
 
 ```console
 G:\demo> ren jpws_85681.jpg jpws_85681.ps1
