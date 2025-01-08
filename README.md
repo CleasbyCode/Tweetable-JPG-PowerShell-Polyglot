@@ -64,7 +64,9 @@ PowerShell scripts that require the user to provide command-line arguments are c
 
 The best way, imo, to download the image from X/Twitter and run the embedded PowerShell script, is to use the ***wget*** command for Linux and the ***iwr*** command for Windows.
 
-You first need to get the image link address from X/Twitter. Click the image in the post to fully expand it, then right-click on the image and select "*Copy image address*" from the menu.
+You first need to get the image link address from X/Twitter.  
+
+Click the image in the post to fully expand it, then right-click on the image and select "*Copy image address*" from the menu.
 Note: *Make sure PowerShell is installed on your Linux PC.*  
 
 For ***wget***, use the following command (enclose the image link address within quotation marks).
