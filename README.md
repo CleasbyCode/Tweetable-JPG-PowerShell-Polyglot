@@ -33,7 +33,7 @@ The PowerShell script is stored at the end of the color profile data of the JPG 
 
 We then have a close-comment block at the end of the color profile data, followed by our PowerShell script, which now gets interpreted. At the end of the PowerShell script (*still within the color profile segment*) we need another open-comment block so that PowerShell ignores the remaining contents of the image file.  
 
-Finally, we need a close-comment block as near to the end of the image file as possible. Unfortunately, things are never as straightforward as we would like them to be. The title for this section should probably of been "***How It Sometimes Works***".  This is mainly down to the short length of the comment-block string, image compatibility and X/Twitter image encoding.
+Finally, we need a close-comment block as near to the end of the image file as possible. Of course, things are never as straightforward as we would like them to be. The title for this section should probably of been "***How It Sometimes Works***".  This is mainly down to the short length of the comment-block string, image compatibility and X/Twitter image encoding.
 
 ## Image Compatibilty, Issues and Limitations.
 
