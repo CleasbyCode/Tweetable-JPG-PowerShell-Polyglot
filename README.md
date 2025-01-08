@@ -25,7 +25,7 @@ Complete!
 ```
 ## How It Works
 
-***PowerShell comment blocks***.  
+***PowerShell comment blocks!***
 
 An open-comment block is required as near to the start of the image file as possible. This is achieved by writing the open-comment block string within the JFIF header segment (***FFE0***), which is conveniently preserved by X/Twitter.  
 
