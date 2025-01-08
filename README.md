@@ -43,16 +43,21 @@ The cover image must not contain any occurance of the PowerShell close-comment b
 
 It's possible to edit out close-comment block strings within the image data by decreasing the image dimensions using an editor such as GIMP. 
 
+For the final close-comment block, we overwrite the last 13 bytes of image data with a default string "0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9".
+Becuase we are modifying bytes within a section of image data that is compressed & encoded, this will trigger X/Twitter to re-encode some (or all) of these bytes.  
 
+The first 6 bytes of the above string can help with the encoding and are also expendable, so it does not no matter if they are changed or removed, but following 4 bytes "0x23, 0x3E, 0x0D, 0x23" are cruical and need to be preserved by X/Twitter for the PowerShell script to work. For some images, these 4 bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program.  
 
-This repo (currently) contains 32 compatible images, should you find it difficult to find your own compatible image (an image containing no close-comment block strings).
+This repo (currently) contains 32 compatible images, should you find it difficult to find your own compatible image.  
 
+A compatible image is an image that does not contain any occurance of the close-comment block string (#>) and preserves the 4 cruical bytes (0x23, 0x3E, 0x0D, 0x23) near the end of the file, after the PowerShell-embedded JPG image has been tweeted.
 
-When saving an image from ***Twitter***, make sure to click on the image first, so as to fully expand it, then save it, so that you get the full image
-dimension size. You will probably have to download and try a few images before a compatible one is found. The incompatiblity issue is caused 
-by the presence within the ***JPG*** image file of the *end-comment block string* ***"#>"***, which breaks the script when we execute it from the image.  
+When saving an image from X/Twitter, make sure to first click the image in the post to fully expand it, then save it, so that you get the full, original image dimension size. 
 
-Within the ***Images*** folder of this repo, I have included a few compatible images for you to use. 
+X/Twitter allows a maximum size of 10KB for the color profile data, where we are storing the PowerShell script. With the overhead of the profile data, you will have about 9.5KB available for
+your PowerShell script.
+
+PowerShell scripts that require the user to provide command-line arguements are currently not supported when embedded within the JPG image. This may change once I figure out how to do this.
 
 ## Executing Your Embedded ***PowerShell*** Script From the Image
 
