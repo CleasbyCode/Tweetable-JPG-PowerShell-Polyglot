@@ -1,6 +1,6 @@
 # jpws
 
-A simple command-line tool to embed a ***PowerShell*** script within a ***JPG*** image to create a tweetable ***JPG-PowerShell*** polyglot file. Share your ***PowerShell*** embedded image on ***X/Twitter***.  
+A simple CLI tool to embed a ***PowerShell*** script within a ***JPG*** image to create a tweetable ***JPG-PowerShell*** polyglot file.  
 
 ![Demo Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/github_demo_pwsh_fibo.jpg) 
 ***{Image Credit: [@McC3Kat](https://x.com/McC3Kat)}***  
