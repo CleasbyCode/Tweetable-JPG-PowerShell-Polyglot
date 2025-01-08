@@ -62,37 +62,32 @@ PowerShell scripts that require the user to provide command-line arguments are c
 
 ## Executing Your Embedded ***PowerShell*** Script From the Image
 
-To run the script within ***Windows*** after successfully embedding your ***PowerShell*** script in a compatible image, you need to rename the *".jpg"* file extension to *".ps1"*. You can then start the script either from a ***PowerShell*** console, e.g. *PS C:\Users\Demo> .\\jpws_img.ps1* or start it from the ***Windows*** desktop by right-clicking the file icon and selecting *"Run with PowerShell"*.  
+The best way, imo, to download the image from X/Twitter and run the embedded PowerShell script, is to use the ***wget*** command for Linux and the ***iwr*** command for Windows.
 
-The best way to run the script after tweeting the image, is to first get the image address from ***Twitter***.  
-You do this by clicking on the image within the tweet to fully expand it, then right-click on the image and select "***Copy image address***". From a ***PowerShell*** console type the following command with the pasted-in image address, which needs to be within quotation marks:
+You first need to get the image link address from X/Twitter. Click the image in the post to fully expand it, then right-click on the image and select "*Copy image address*" from the menu.
+Note: *Make sure PowerShell is installed on your Linux PC.*  
 
-````bash
+For ***wget***, use the following command (enclose the image link address within quotation marks).
+```console
+ wget "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n.jpg";pwsh F6*
+```
+The *wget* command downloads the image from ***Twitter***, then the *pwsh* command followed by the name of the downloaded image runs the embedded ***PowerShell*** script.
+
+For ***iwr***, use the following command.
+```console
 iwr -o fibo.ps1 "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n.jpg";.\fibo.ps1
-````
-The command will download the image from ***Twitter***, rename the image file to give it a ***PowerShell*** extension, then execute the script.
+```
+The ***iwr*** command will download the image from ***X/Twitter***, renames the image file and to give it a ***PowerShell*** extension, then execute the script.
 
 To start the script using ***Linux***, just enter the following command within a terminal. There is no need to change the file extension with ***Linux***. 
 
 ````bash
 $ pwsh jpws_img.jpg
 ````
-To download and run an image from ***Twitter*** using ***Linux***, get the address of the image from ***Twitter*** as described above for the Windows example.
-Once you have the image address, type the following command in the terminal with the pasted-in image address, which again, needs to be within quotation marks:
 
-```bash
- wget "https://pbs.twimg.com/media/F6LKHaqXkAAbJ6n.jpg";pwsh F6*
-```
-The *wget* command downloads the image from ***Twitter***, then the *pwsh* command followed by the name of the downloaded image runs the embedded ***PowerShell*** script.
 
-My other programs you may find useful:-  
 
-* [pdvzip: CLI tool to embed a ZIP file within a tweetable and "executable" PNG-ZIP polyglot image.](https://github.com/CleasbyCode/pdvzip)
-* [jdvrif: CLI tool to encrypt & embed any file type within a JPG image.](https://github.com/CleasbyCode/jdvrif)
-* [imgprmt: CLI tool to embed an image prompt (e.g. "Midjourney") within a tweetable JPG-HTML polyglot image.](https://github.com/CleasbyCode/imgprmt)
-* [pdvrdt: CLI tool to encrypt, compress & embed any file type within a PNG image.](https://github.com/CleasbyCode/pdvrdt)
-* [xif: CLI tool to embed small files (e.g. "workflow.json") within a tweetable JPG-ZIP polyglot image.](https://github.com/CleasbyCode/xif) 
-* [pdvps: PowerShell / C++ CLI tool to encrypt & embed any file type within a tweetable & "executable" PNG image](https://github.com/CleasbyCode/pdvps)
+
 
 ##
 
