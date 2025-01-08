@@ -2,7 +2,7 @@
 
 A simple command-line tool to embed a ***PowerShell*** script within a ***JPG*** image to create a tweetable ***JPG-PowerShell*** polyglot file. Share your ***PowerShell*** embedded image on ***X/Twitter***.  
 
-![Demo Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/jpws_55670.jpg) 
+![Demo Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/github_demo_pwsh_fibo.jpg) 
 ***{Image Credit: [@no_dualitat](https://twitter.com/no_dualitat/status/1701678793172082849)}***  
 ***Image embedded with PowerShell script. Simple Fibonacci number sequence program.***  
 
