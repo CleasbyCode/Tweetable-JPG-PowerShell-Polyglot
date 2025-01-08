@@ -41,7 +41,7 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 To start with, always use images found on X/Twitter for your cover image. If you want to use an image not originally from that platform, first post your image to X/Twitter, then save it. This ensures the JPG image will be encoded by the method used by X/Twitter. Once encoded, the whole image will be *preserved by X/Twitter when posted again on its platform, which is useful for our requirements. **X/Twitter will re-encode part of the image if bytes of the image data are modified. More on that later*. 
 
-The cover image must not contain any occurance of the PowerShell close-comment block string (#>), apart from the ones inserted by the program, as this will cause the PowerShell script to fail. Unfortunatly, with the comment-block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the image data is quite high. The larger the image, the greather the probablity of multiple hits. I would not even consider trying images larger than 400KB. 
+The cover image must not contain any occurrence of the PowerShell close-comment block string (#>), apart from the ones inserted by the program, as this will cause the PowerShell script to fail. Unfortunatly, with the comment-block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the image data is quite high. The larger the image, the greather the probablity of multiple hits. I would not even consider trying images larger than 400KB. 
 
 It's possible to edit out close-comment block strings within the image data by decreasing the image dimensions using an editor such as GIMP. 
 
@@ -52,7 +52,7 @@ The first 6 bytes of the above string can help with the encoding and are also ex
 
 This repo (currently) contains 32 compatible images, should you find it difficult to find your own compatible image.  
 
-A compatible image is an image that does not contain any occurance of the close-comment block string (#>) and preserves the 4 crucial bytes (0x23, 0x3E, 0x0D, 0x23) near the end of the file, after the PowerShell-embedded JPG image has been tweeted.
+A compatible image is an image that does not contain any occurrence of the close-comment block string (#>) and preserves the 4 crucial bytes (0x23, 0x3E, 0x0D, 0x23) near the end of the file, after the PowerShell-embedded JPG image has been tweeted.
 
 When saving an image from X/Twitter, make sure to first click the image in the post to fully expand it, then save it, so that you get the full, original image dimension size. 
 
