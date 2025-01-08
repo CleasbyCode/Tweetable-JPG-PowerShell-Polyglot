@@ -15,7 +15,7 @@ user1@linuxbox:~/Downloads/jpws-main/src/jpws$ sudo cp jpws /usr/bin
 user1@linuxbox:~/Desktop$ jpws
 
 Usage: jpws <cover_image> <powershell_script>  
-       jdws --info
+       jpws --info
 
 user1@linuxbox:~/Desktop$ jpws cover_image23.jpg fibo.ps1
 
