@@ -116,6 +116,7 @@ G:\demo> ren jpws_85681.jpg jpws_85681.ps1
 G:\demo> Unblock-File jpws_85681.ps1 (Only required for downloaded images or images taken from another machine).
 G:\demo> .\jpws_85681.ps1
 ```
+https://github.com/user-attachments/assets/c5c242e9-b073-47c8-9027-ed88b7f0b5c3
 
 ##
 
