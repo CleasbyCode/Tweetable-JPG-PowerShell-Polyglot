@@ -31,6 +31,8 @@ An open-comment block is required as near to the start of the image file as poss
 
 These bytes within the image are conveniently preserved by X/Twitter.  
 
+***Important! When saving images from X/Twitter, always click the image in the post to fully expand it before saving. This ensures you get the full size image, with all the embedded data.***
+
 The PowerShell script is stored at the end of the color profile data of the JPG image, which is also preserved by X/Twitter. We use the first PowerShell open-comment block within the JFIF header to ignore the ICC profile segment header ***FFE2*** along with the color profile data.  
 
 We then have a close-comment block at the end of the color profile data, followed by our PowerShell script, which now gets interpreted. At the end of the PowerShell script (*still within the color profile segment*) we use another open-comment block so that PowerShell ignores the remaining contents of the image file.  
