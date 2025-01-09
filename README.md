@@ -67,7 +67,7 @@ X/Twitter allows a maximum size of 10KB for the color profile data, the segment 
 
 PowerShell scripts that require the user to provide command-line arguments are currently not supported when embedded within the JPG image. This may change once I figure out how to do this.
 
-## Executing The Embedded ***PowerShell*** Script
+## Executing The Embedded PowerShell Script
 
 The easiest way, imo, to download the image from X/Twitter and run the embedded PowerShell script, is to use the ***wget*** command for *Linux and the ***iwr*** command for Windows.
 **Make sure PowerShell is installed on your Linux PC.*  
@@ -76,21 +76,21 @@ You will first need to get the image link address from X/Twitter, once you have 
 
 Click the image in the post to fully expand it, then right-click on the image and select "*Copy image address*" from the menu.
 
-For ***wget***, use the following command (enclose the image link address within quotation marks).
+For ***wget***, use the following command (enclose the image link address within quotation marks):
 ```console
  wget "https://pbs.twimg.com/media/Gg2JRntX0AAB1A0?format=jpg&name=large";pwsh Gg2JR*
 ```
-The *wget* command downloads the image from ***Twitter***, then the *pwsh* command followed by the name of the downloaded image runs the embedded ***PowerShell*** script.
+The ***wget*** command downloads the image from X/Twitter, then the *pwsh* command followed by the name of the downloaded image runs the embedded PowerShell script.
 
-For ***iwr***, use the following command.
+For ***iwr***, use the following command:
 ```console
 iwr -o fibo.ps1 "https://pbs.twimg.com/media/Gg2JRntX0AAB1A0?format=jpg&name=large";.\fibo.ps1
 ```
-The ***iwr*** command will download the image from ***X/Twitter***, renames the image file, which includes the ***PowerShell*** extension, then executes the script in the image.
+The ***iwr*** command will download the image from X/Twitter, renames the image file, which includes the PowerShell extension, then executes the script in the image.
 
 Alternatively, you can just manually download the image from X/Twitter (remember to click on the image within the post to fully expand it before saving).
 
-To run the script embedded with the image using ***Linux***, just enter the following command within a terminal. There is no need to change the file extension with ***Linux***. 
+To run the script embedded with the image using Linux, just enter the following command within a terminal. There is no need to change the file extension with Linux. 
 
 ```console
 $ pwsh jpws_85681.jpg
