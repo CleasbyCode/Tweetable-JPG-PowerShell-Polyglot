@@ -27,7 +27,7 @@ Complete!
 
 ***PowerShell comment blocks!***
 
-An open-comment block is required as near to the start of the image file as possible. This is achieved by writing the full open-comment block string "\n<#\r\n" (0x0D, 0x3C, 0x23, 0x0D, 0x0A) within the JFIF header segment ***FFE0***, which is conveniently preserved by X/Twitter.  
+An open-comment block is required as near to the start of the image file as possible. This is achieved by writing the following 5 bytes string "\n<#\r\n" (0x0D, 0x3C, 0x23, 0x0D, 0x0A), containing the 2 byte open-comment block characters, within the JFIF header segment ***FFE0***. These bytes are conveniently preserved by X/Twitter.  
 
 The PowerShell script is stored at the end of the color profile data of the JPG image, which is also preserved by X/Twitter. We use the first PowerShell open-comment block within the JFIF header to ignore the ICC profile segment header ***FFE2*** along with the color profile data.  
 
