@@ -27,7 +27,7 @@ Complete!
 
 ***PowerShell comment blocks!***
 
-An open-comment block is required as near to the start of the image file as possible. This is achieved by writing the following 5 byte string "\n<#\r\n" (0x0D, 0x3C, 0x23, 0x0D, 0x0A), containing the 2 byte open-comment block characters, within the JFIF header segment ***FFE0***.  
+An open-comment block is required as near to the start of the image file as possible. This is achieved by writing the following five byte string "\n<#\r\n" (0x0D, 0x3C, 0x23, 0x0D, 0x0A), containing the two byte open-comment block characters, within the JFIF header segment ***FFE0***.  
 
 These bytes within the image are conveniently preserved by X/Twitter.  
 
@@ -47,14 +47,14 @@ The cover image must not contain any occurrence of the PowerShell close-comment 
 
 It's possible to edit out close-comment block strings within the image data by slightly decreasing the image dimensions using an editor such as GIMP. 
 
-For the final close-comment block, we overwrite the last 13 bytes of image data with a default string "0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9".
+For the final close-comment block, we overwrite the last thirteen bytes of image data with a default string "0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9".
 To have any chance of getting this to work, we have no choice but to modifying bytes within a section of the image file that is compressed & encoded. This triggers X/Twitter to re-encode some (or all) of these bytes.  
 
-The first 6 bytes of the above string can help with the encoding and are also expendable, so it does not matter if they are changed or removed, but the following 4 bytes "0x23, 0x3E, 0x0D, 0x23" are crucial and need to be preserved by X/Twitter for the PowerShell script to work after tweeting the image. For some images, these 4 bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program. We can only find out which images work after tweeting them. Again, slightly decreasing image dimensions may help with compatiblity/encoding.
+The first six bytes of the above string can help with the encoding and are also expendable, so it does not matter if they are changed or removed, but the following four bytes "0x23, 0x3E, 0x0D, 0x23" are crucial and need to be preserved by X/Twitter for the PowerShell script to work after tweeting the image. For some images, these four bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program. We can only find out which images work after tweeting them. Again, slightly decreasing image dimensions may help with compatiblity/encoding.
 
-This repo (currently) contains 32, ready to use, compatible images, should you find it difficult to find your own compatible image.  
+This repo (currently) contains 32 ready to use compatible images, should you find it difficult to find your own compatible image.  
 
-A compatible image is an JPG that does not contain any occurrence of the close-comment block string (#>) and preserves the 4 crucial bytes (0x23, 0x3E, 0x0D, 0x23) near the end of the file, after the PowerShell-embedded JPG image has been tweeted.
+A compatible image is an JPG that does not contain any occurrence of the close-comment block string (#>) and preserves the four crucial bytes (0x23, 0x3E, 0x0D, 0x23) near the end of the file, after the PowerShell-embedded JPG image has been tweeted.
 
 When saving an image from X/Twitter, make sure to first click the image in the post to fully expand it, then save it, so that you get the full, original image dimension size. 
 
@@ -64,12 +64,12 @@ PowerShell scripts that require the user to provide command-line arguments are c
 
 ## Executing The Embedded ***PowerShell*** Script
 
-The best way, imo, to download the image from X/Twitter and run the embedded PowerShell script, is to use the ***wget*** command for Linux and the ***iwr*** command for Windows.
+The easist way, imo, to download the image from X/Twitter and run the embedded PowerShell script, is to use the ***wget*** command for Linux and the ***iwr*** command for Windows.
+Note: *Make sure PowerShell is installed on your Linux PC.*  
 
-You will first need to get the image link address from X/Twitter.  
+You will first need to get the image link address from X/Twitter, once you have posted the embedded image.
 
 Click the image in the post to fully expand it, then right-click on the image and select "*Copy image address*" from the menu.
-Note: *Make sure PowerShell is installed on your Linux PC.*  
 
 For ***wget***, use the following command (enclose the image link address within quotation marks).
 ```console
@@ -95,7 +95,7 @@ you will probably need to unblock the file before you can run the embedded scrip
 
 ```console
 G:\demo> ren jpws_85681.jpg jpws_85681.ps1
-G:\demo> Unblock-File jpws_85681.ps1
+G:\demo> Unblock-File jpws_85681.ps1 (Only required for downloaded images or images taken from another machine).
 G:\demo> .\jpws_85681.ps1
 ```
 
