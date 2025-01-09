@@ -35,18 +35,18 @@ We then have a close-comment block at the end of the color profile data, followe
 
 Finally, we need a close-comment block as near to the end of the image file as possible.  
 
-Of course, things are never as straightforward as we would like them to be. The title for this section should probably of been "***How It Sometimes Works***".  This is mainly down to the short length of the comment-block string, image compatibility and X/Twitter image encoding.
+Of course, things are never as straightforward as we would like them to be. The title for this section should probably of been "***How It Sometimes Works***".  The issues are mainly down to the short length of the comment-block string, image compatibility and X/Twitter image encoding.
 
 ## Image Compatibilty, Issues and Limitations.
 
-To start with, always use images found on X/Twitter for your cover image. If you want to use an image not originally from that platform, first post your image to X/Twitter, then save it. This ensures the JPG image will be encoded by the method used by X/Twitter. Once encoded, the whole image will be *preserved by X/Twitter when posted again on its platform, which is useful for our requirements. **X/Twitter will re-encode part of the image if bytes of the image data are modified. More on that later*. 
+To start with, always use images found on X/Twitter for your cover image. If you want to use an image not originally from that platform, first post your image to X/Twitter, then save it. This ensures the JPG image will be encoded by the method used by X/Twitter. Once encoded, the whole image will be *preserved by X/Twitter when posted again on its platform, which is useful for our requirements. **Note: X/Twitter will re-encode part of the image if bytes of the image data are modified. More on that later*. 
 
-The cover image must not contain any occurrence of the PowerShell close-comment block string (#>), apart from the ones inserted by the program, as this will cause the PowerShell script to fail. Unfortunatly, with the comment-block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the image data is quite high. The larger the image, the greather the probablity of multiple hits. I would not even consider trying images larger than 400KB. 
+The cover image must not contain any occurrence of the PowerShell close-comment block string "#>" (0x23, 0x3E), apart from the ones inserted by the program, as this will cause the PowerShell script to fail. Unfortunatly, with the comment-block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the image data is quite high. The larger the image, the greather the probablity of multiple hits. I would not even consider trying images larger than 400KB. 
 
 It's possible to edit out close-comment block strings within the image data by decreasing the image dimensions using an editor such as GIMP. 
 
-For the final close-comment block, we overwrite the last 13 bytes of image data with a default string "0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9".
-Becuase we are modifying bytes within a section of image data that is compressed & encoded, this will trigger X/Twitter to re-encode some (or all) of these bytes.  
+For final close-comment block, we overwrite the last 13 bytes of image data with a default string "0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9".
+To have any chance of getting this to work, we have no choice but to modifying bytes within a section of the image file that is compressed & encoded. This triggers X/Twitter to re-encode some (or all) of these bytes.  
 
 The first 6 bytes of the above string can help with the encoding and are also expendable, so it does not matter if they are changed or removed, but the following 4 bytes "0x23, 0x3E, 0x0D, 0x23" are crucial and need to be preserved by X/Twitter for the PowerShell script to work after tweeting the image. For some images, these 4 bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program. We can only find out which images work after tweeting them.
 
