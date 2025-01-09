@@ -35,7 +35,7 @@ We then have a close-comment block at the end of the color profile data, followe
 
 Finally, we need a close-comment block as near to the end of the image file as possible. 
 
-Of course, things are never as straightforward as we would like them to be. The title for this section should probably of been "***How It Sometimes Works***".  The issues are mainly down to the short length of the comment-block string, image compatibility and X/Twitter image encoding.
+Of course, things are never as straightforward as we would like them to be. The title for this section should probably of been "***How It Sometimes Works***".  The issues are mainly down to the short length of the main close-comment block string "#>", image compatibility and X/Twitter image encoding.
 
 ## Image Compatibilty, Issues and Limitations.
 
