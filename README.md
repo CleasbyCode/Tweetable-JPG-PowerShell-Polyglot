@@ -53,7 +53,9 @@ For the final close-comment block, we overwrite the last thirteen bytes of image
 
 To have any chance of getting this to work, we have no choice but to modifying bytes within a section of the image file that is compressed & encoded. This triggers X/Twitter to re-encode some (or all) of these bytes.  
 
-The first six bytes of the above string can help with the encoding and are also expendable, so it does not matter if they are changed or removed, but the following four bytes "0x23, 0x3E, 0x0D, 0x23" are crucial and need to be preserved by X/Twitter for the PowerShell script to work after tweeting the image. For some images, these four bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program. We can only find out which images work after tweeting them. Again, slightly decreasing image dimensions may help with compatiblity/encoding.
+The first six bytes of the above string can help with the encoding and are also expendable, so it does not matter if they are changed or removed, but the following four bytes "0x23, 0x3E, 0x0D, 0x23" are crucial and need to be preserved by X/Twitter for the PowerShell script to work after tweeting the image. For some images, these four bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program.  
+
+We can only find out which images work after tweeting them. Again, slightly decreasing image dimensions may help with compatiblity/encoding.
 
 This repo (currently) contains 32 ready to use compatible images, should you find it difficult to find your own compatible image.  
 
