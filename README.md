@@ -39,7 +39,7 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 ## Image Compatibilty, Issues and Limitations.
 
-To start with, always use images found on X/Twitter for your cover image. If you want to use an image not originally from that platform, first post your image to X/Twitter, then save it. This ensures the JPG image will be encoded by the method used by X/Twitter. Once encoded, the whole image will be *preserved by X/Twitter the next time it's posted on the platform, which is useful for our requirements. **Note: X/Twitter will re-encode part of the image if bytes of the image data are modified. More on that later*. 
+To start with, always use images found on X/Twitter for your cover image. If you want to use an image not originally from that source, first post your image to X/Twitter, then save it. This ensures the JPG image will be encoded by the method used by X/Twitter. Once encoded, the whole image will be *preserved by X/Twitter the next time it's posted on the platform, which is useful for our requirements. **Note: X/Twitter will re-encode part of the image if bytes of the image data are modified. More on that later*. 
 
 The cover image must not contain any occurrence of the PowerShell close-comment block string "#>" (0x23, 0x3E), apart from the ones inserted by the program, as this will cause the PowerShell script to fail. Unfortunatly, with the comment-block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the image data is quite high. The larger the image, the greather the probablity of multiple hits. I would not even consider trying images larger than 400KB. 
 
