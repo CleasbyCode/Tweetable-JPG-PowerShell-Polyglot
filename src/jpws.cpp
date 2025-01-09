@@ -1,9 +1,11 @@
 int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename) {
 
-	constexpr int MAX_COMBINED_FILE_SIZE 	= 5 * 1024 * 1024;  	// 5MB. (Image + PowerShell file)
-	constexpr int MAX_POWERSHELL_FILE_SIZE 	= 10 * 1024;		// 10KB. 
-	constexpr int MIN_IMAGE_FILE_SIZE	= 134;			// 134Bytes.
-	constexpr int MIN_POWERSHELL_FILE_SIZE	= 10; 			// 10Bytes.
+	constexpr uint32_t MAX_COMBINED_FILE_SIZE 	= 5 * 1024 * 1024;  	// 5MB. (Image + PowerShell file)
+	constexpr uint16_t MAX_POWERSHELL_FILE_SIZE 	= 10 * 1024;		// 10KB. 
+
+	constexpr uint8_t 
+		MIN_IMAGE_FILE_SIZE		= 134,	// 134Bytes.
+		MIN_POWERSHELL_FILE_SIZE	= 10; 	// 10Bytes.
 
 	const size_t 
 		IMAGE_FILE_SIZE 	= std::filesystem::file_size(IMAGE_FILENAME),
@@ -11,22 +13,22 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename) {
 		COMBINED_FILE_SIZE 	= POWERSHELL_FILE_SIZE + IMAGE_FILE_SIZE;
 
 	if (COMBINED_FILE_SIZE > MAX_COMBINED_FILE_SIZE) {
-   	 	std::cerr << "File Size Error: Combined file sizes will exceed the maximum allowed: 5MB.\n";
+   	 	std::cerr << "\nFile Size Error: Combined file sizes will exceed the maximum allowed: 5MB.\n\n";
     		return 1;
 	}
 
 	if (MIN_IMAGE_FILE_SIZE > IMAGE_FILE_SIZE) {
-    		std::cerr << "File Size Error: Image file size is smaller than the minimum allowed: 134Bytes.\n";
+    		std::cerr << "\nFile Size Error: Image file size is smaller than the minimum allowed: 134 Bytes.\n\n";
     		return 1;
 	}
 
 	if (MIN_POWERSHELL_FILE_SIZE > POWERSHELL_FILE_SIZE) {
-    		std::cerr << "File Size Error: PowerShell file size is smaller than the minimum allowed: 10Bytes.\n";
+    		std::cerr << "\nFile Size Error: PowerShell file size is smaller than the minimum allowed: 10 Bytes.\n\n";
     		return 1;
 	}
 
 	if (POWERSHELL_FILE_SIZE > MAX_POWERSHELL_FILE_SIZE) {
-    		std::cerr << "File Size Error: PowerShell file size exceeds the maximum allowed: 10KB.\n";
+    		std::cerr << "\nFile Size Error: PowerShell file size exceeds the maximum allowed: 10KB.\n\n";
     		return 1;
 	}
 
@@ -67,9 +69,9 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename) {
 	const uint32_t SOFP_POS = searchFunc(Image_Vec, 0, 0, SOFP_SIG);
 
 	if (SOFP_POS == Image_Vec.size()) {
-		std::cerr << "\nImage File Error: Cover image does not appear to be a X/Twitter encoded JPG image. Please use images from X/Twitter.\n"
-			  << "If you want to use this image, post it to X/Twitter, save it, then retry it with this program.\n\n";
-		std::exit(EXIT_FAILURE);
+		std::cerr << "\nImage File Error: Cover image does not appear to be an X/Twitter encoded JPG image.\n"
+			  << "\t\bIf you want to use this image, post it to X/Twitter first, save it and retry.\n\n";
+		return 1;
 	}
 
 	eraseSegments(Image_Vec);
@@ -78,72 +80,44 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename) {
         	PowerShell_Vec.erase(PowerShell_Vec.begin(), PowerShell_Vec.begin() + 3);
         }
 
-	// Search JPG cover image for the PowerShell end-comment block string: "#>".
-	// Any occurrence of this string within the image data will break the PowerShell script, as it closes the comment block too soon.
-	// We need the last end-comment block string to only occur as near to the end of the image file as possible. The program will add this string itself.
-	// An image with more than one occurrence of this end-comment block string is not supported.
-
-	constexpr uint8_t COMMENT_BLOCK_SIG[] {0x23, 0x3E};
-	constexpr int COMMENT_BLOCK_SIZE = 2;
-
-    	int endCommentBlockCount = 0;
+	constexpr uint8_t 
+		CLOSE_COMMENT_BLOCK_SIG[] {0x23, 0x3E},
+		COMMENT_BLOCK_LENGTH = 2;
  
-   	auto searchStart = Image_Vec.begin();
-
-    	while (true) {
-        	auto it = std::search(
-            		searchStart,
-            		Image_Vec.end(),
-            		std::begin(COMMENT_BLOCK_SIG),
-            		std::end(COMMENT_BLOCK_SIG)
-        	);
-
-        	if (it == Image_Vec.end()) {
-            		break;
-        	}
-
-        	const auto foundIndex = std::distance(Image_Vec.begin(), it);
-        
-        	++endCommentBlockCount;
-
-        	if (endCommentBlockCount < 2) {
-        		Image_Vec[foundIndex] = 0x1F;
-            		searchStart = it + COMMENT_BLOCK_SIZE;
-        	} else {
-			std::cerr << "\nImage File Error: This image is not supported as it contains too many end-comment block strings: \"#>\". "
-                      		  << "End-comment block strings within the image data will cause the PowerShell script to fail."
-				  << "A single occurance of a end-comment block is supported and can be altered, usually without causing any problems."
-				  << "Please try another image.\n\n";
-			return 1;
-        	}
-    	}
-
-	if (endCommentBlockCount) {
-		std::cout << "\nWarning: For compatibility requirements, a single byte change was made to the image.\n"
-			" Please check output image for signs of image distortion.\n";
+	const uint32_t CLOSE_COMMENT_BLOCK_POS = searchFunc(Image_Vec, 0, 0, CLOSE_COMMENT_BLOCK_SIG);
+    
+      	if (CLOSE_COMMENT_BLOCK_POS != Image_Vec.size()) {
+        	std::cerr << "\nImage File Error:\n\nThis image cannot be used as it contains the two byte close-comment block character sequence: \"#>\". "
+                      	  << "\nPresence of the close-comment block within the image data will break the PowerShell script."
+			  << "\n\nIt's possible to remove close-comment blocks within the image by slightly decreasing\nthe image dimensions using an editor such as GIMP. Repeat, if necessary.\n\n";
+		return 1;	
 	}
 
 	constexpr int POWERSHELL_INSERT_INDEX = 6;
 
-	// Read-in and store the PowerShell script into vector "Profile_Vec" at the relevant index location within the main profile.
 	Profile_Vec.insert(Profile_Vec.end() - POWERSHELL_INSERT_INDEX, PowerShell_Vec.begin(), PowerShell_Vec.end());
 
-	int
+	uint8_t
 		bits = 16,						
 		segment_size_field_index = 0x16;		
 		
 	const size_t SEGMENT_SIZE = Profile_Vec.size() - segment_size_field_index;
 	
+	if (SEGMENT_SIZE > MAX_POWERSHELL_FILE_SIZE) {
+		std::cerr <<"\nSegment Size Error: The profile segment (FFE2) exceeds the maximum size of 10KB.\n\n";
+		return 1;
+	}
+
 	while (bits) {
 		Profile_Vec[segment_size_field_index++] = (SEGMENT_SIZE >> (bits -= 8)) & 0xff;
 	}
 
 	Image_Vec.insert(Image_Vec.begin(), Profile_Vec.begin(), Profile_Vec.end());
 	
-	// End-comment block, overwrites last 13 bytes of cover image file. Required for PowerShell script to run from image.
-	constexpr uint8_t EndCommentBlock[] { 0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9 };
+	
+	constexpr uint8_t CloseCommentBlockString[] { 0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9  };
 
-	std::copy(std::rbegin(EndCommentBlock), std::rend(EndCommentBlock), Image_Vec.rbegin());
+	std::copy(std::rbegin(CloseCommentBlockString), std::rend(CloseCommentBlockString), Image_Vec.rbegin());
 
 	if (!writeFile(Image_Vec)) {
 		return 1;
@@ -152,4 +126,3 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename) {
 	std::cout << "\nComplete!\n\n";
 	return 0;
 }
-
