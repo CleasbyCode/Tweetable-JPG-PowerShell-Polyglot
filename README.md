@@ -60,7 +60,7 @@ X/Twitter allows a maximum size of 10KB for the color profile data, the segment 
 
 PowerShell scripts that require the user to provide command-line arguments are currently not supported when embedded within the JPG image. This may change once I figure out how to do this.
 
-## Executing Your Embedded ***PowerShell*** Script From the Image
+## Executing The Embedded ***PowerShell*** Script
 
 The best way, imo, to download the image from X/Twitter and run the embedded PowerShell script, is to use the ***wget*** command for Linux and the ***iwr*** command for Windows.
 
