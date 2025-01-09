@@ -114,7 +114,6 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename) {
 
 	Image_Vec.insert(Image_Vec.begin(), Profile_Vec.begin(), Profile_Vec.end());
 	
-	
 	constexpr uint8_t CloseCommentBlockString[] { 0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9  };
 
 	std::copy(std::rbegin(CloseCommentBlockString), std::rend(CloseCommentBlockString), Image_Vec.rbegin());
