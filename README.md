@@ -68,9 +68,9 @@ The first six bytes of the above string can help with the encoding and are also 
 
 We can only find out which images work after tweeting them. Again, slightly decreasing image dimensions may help with compatiblity/encoding.
 
-This repo (currently) contains 32 ready to use compatible images, should you find it difficult to find your own compatible cover image.  
+This repo contains a number of ready to use compatible images, should you find it difficult to find your own compatible cover image.  
 
-A compatible image is an JPG that does not contain any occurrence of the close-comment block string (#>) and preserves the four crucial bytes (0x23, 0x3E, 0x0D, 0x23) near the end of the file, after the PowerShell-embedded JPG image has been tweeted.
+A compatible image is an JPG that does not contain any occurrence of the close-comment block string (#>) and preserves the four crucial bytes (0x23, 0x3E, 0x0D, 0x23) near the end of the file, after the JPG-PowerShell polyglot image has been tweeted.
 
 When saving an image from X/Twitter, make sure to first click the image in the post to fully expand it, then save it, so that you get the full, original image dimension size. 
 
