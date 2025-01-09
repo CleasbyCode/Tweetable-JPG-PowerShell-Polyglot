@@ -23,6 +23,9 @@ Saved "PowerShell-embedded" JPG image: jpws_10247.jpg (321081 bytes).
 
 Complete!
 ```
+
+https://github.com/user-attachments/assets/b9e1888a-10c9-4933-aa7a-cae40219b87d
+
 ## How It Works
 
 ***PowerShell comment blocks!***
