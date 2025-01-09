@@ -80,9 +80,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename) {
         	PowerShell_Vec.erase(PowerShell_Vec.begin(), PowerShell_Vec.begin() + 3);
         }
 
-	constexpr uint8_t 
-		CLOSE_COMMENT_BLOCK_SIG[] {0x23, 0x3E},
-		COMMENT_BLOCK_LENGTH = 2;
+	constexpr uint8_t CLOSE_COMMENT_BLOCK_SIG[] {0x23, 0x3E};
  
 	const uint32_t CLOSE_COMMENT_BLOCK_POS = searchFunc(Image_Vec, 0, 0, CLOSE_COMMENT_BLOCK_SIG);
     
