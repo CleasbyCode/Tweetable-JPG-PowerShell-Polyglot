@@ -48,7 +48,7 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 ## Image Compatibilty, Issues and Limitations.
 
-Always use a Progressive encoded JPG for your cover image. Progressive encoded JPG images are identifed by the segment marker "FFC2" (Start of Frame 2/Progressive DCT). This program (using libjpeg-turbo libray) will re-encode your image if the format is not Progressive.
+Always use a Progressive encoded JPG for your cover image. Progressive encoded JPG images are identifed by the segment marker "FFC2" (Start of Frame 2/Progressive DCT). This program (using the libjpeg-turbo library) will re-encode your image if the format is not Progressive.
 
 X/Twitter uses this method for encoding JPG images posted on it's platform.  
 
