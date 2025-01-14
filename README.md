@@ -48,11 +48,11 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 ## Image Compatibilty, Issues and Limitations.
 
-Always use a Progressive encoded JPG for your cover image. Progressive encoded JPG images are identifed by the segment marker "FFC2" (Start of Frame 2/Progressive DCT). X/Twitter uses this method for encoding JPG images posted on it's platform.  
+Always use a Progressive encoded JPG for your cover image. Progressive encoded JPG images are identifed by the segment marker "FFC2" (*Start of Frame 2/Progressive DCT*).  X/Twitter uses this method for encoding JPG images posted on its platform.  There are plenty of images on X/Twitter, which you could use for the cover image.
 
 This program (*using the libjpeg-turbo library*) will re-encode your image if the format is not Progressive.
 
-Posting a Progressive encoded JPG image on X/Twitter (*within file and dimension size limits*) the image will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements. If X/Twitter re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: X/Twitter will re-encode sections of the image if bytes of the image data are modified. More on that later*. 
+Posting a Progressive encoded JPG image on X/Twitter *within file and dimension size limits* the image will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements. If X/Twitter re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: X/Twitter will re-encode sections of the image if bytes of the image data are modified. More on that later*. 
 
 The cover image must not contain any occurrence of the PowerShell close-comment block string "#>" (0x23, 0x3E), apart from the ones inserted by the program, as this will cause the PowerShell script to fail.  
 
