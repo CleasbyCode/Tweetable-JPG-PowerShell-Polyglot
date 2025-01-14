@@ -136,5 +136,17 @@ G:\demo> ren jpws_85681.jpg jpws_85681.ps1
 G:\demo> Unblock-File jpws_85681.ps1 (Only required for downloaded images or images taken from another machine).
 G:\demo> .\jpws_85681.ps1
 ```
+## Third-Party Libraries
+
+This project makes use of the following third-party libraries:  
+
+stb_image by Sean Barrett (“nothings”)
+libjpeg-turbo (see [***LICENSE***](https://github.com/libjpeg-turbo/libjpeg-turbo/blob/main/LICENSE.md) file)
+{This software is based in part on the work of the Independent JPEG Group.}
+
+
+
+
+
 ##
 
