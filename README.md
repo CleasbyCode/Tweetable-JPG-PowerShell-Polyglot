@@ -54,7 +54,7 @@ X/Twitter uses this method for encoding JPG images posted on its platform.  Ther
 
 This program (*using the libjpeg-turbo library*) will re-encode your image if the format is not Progressive.
 
-Posting a Progressive encoded JPG image on X/Twitter *within file and dimension size limits* the image will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  
+A Progressive encoded image posted on X/Twitter, *within file and dimension size limits*, will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  
 
 If X/Twitter re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: X/Twitter will re-encode sections of the image if bytes of the image data are modified. More on that later*. 
 
