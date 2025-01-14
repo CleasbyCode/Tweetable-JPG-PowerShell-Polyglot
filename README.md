@@ -74,7 +74,13 @@ The first six bytes of the string can help with the encoding and are expendable,
 
 We can only find out which images work after tweeting them.  
 
-If an image fails to preseve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option ($ jpws -alt your_cover_image your_powershell_script), which will use a slightly different thirteen byte string, that usually works for images that have failed with the default string. Another potential fix is to manually decrease image dimensions using an editor such as GIMP.
+If an image fails to preseve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option:  
+
+```console
+user1@linuxbox:~/Desktop$ jpws -alt cover_image23.jpg fibo.ps1
+```
+
+With this option selected, ***jpws*** will use a slightly different thirteen byte string, that usually works for images that have failed with the default string. Another potential fix is to manually decrease image dimensions using an editor such as GIMP.
 
 The first image below shows the 
 
