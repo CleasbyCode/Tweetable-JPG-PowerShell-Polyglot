@@ -72,7 +72,9 @@ To have any chance of getting this to work, we have no choice but to overwrite b
 
 The first six bytes of the string can help with the encoding and are expendable, so it does not matter if they are changed or removed, but the following four bytes "***0x23, 0x3E, 0x0D, 0x23***" are crucial and need to be preserved by ***X/Twitter*** for the ***PowerShell*** script to work after tweeting the image. For some images, these four bytes are preserved by ***X/Twitter***, but are changed or removed for other image, which will causes the embedded ***PowerShell*** script to fail.
 
-We can only find out which images work after tweeting them. If an image fails to preseve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option ($ jpws -alt your_cover_image your_powershell_script), which will use a slightly different thirteen byte string, that usually works for images that have failed with the default string. Another potential fix is to manually decrease image dimensions using an editor such as GIMP.
+We can only find out which images work after tweeting them.  
+
+If an image fails to preseve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option ($ jpws -alt your_cover_image your_powershell_script), which will use a slightly different thirteen byte string, that usually works for images that have failed with the default string. Another potential fix is to manually decrease image dimensions using an editor such as GIMP.
 
 The first image below shows the 
 
