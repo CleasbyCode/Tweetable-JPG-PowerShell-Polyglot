@@ -60,17 +60,20 @@ The cover image must not contain any occurrence of the ***PowerShell*** close-co
 
 Unfortunatly, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***512KB*** for the cover image. 
 
-If detected within the cover image, ***jpws*** (*using libjpeg-turbo & stb_image*) will attempt to eliminate these close-comment block strings by slightly decreasing image dimensions. This will cause the image to be re-encoded, protentially removing those unwanted character sequences. The image will be checked again for the presence of that string, repeating the procedure of decreasing image dimensions if required. There is a maximum of five decrease attempts before ***jpws*** gives up and requests you try a different image.
+If detected within the cover image, ***jpws*** (*using libjpeg-turbo & stb_image*) will attempt to eliminate the close-comment block strings by slightly decreasing image dimensions. This will cause the image to be re-encoded, protentially removing those unwanted character sequences. The image will be checked again for the presence of that string, repeating the procedure of decreasing image dimensions if required. There is a maximum of five decrease attempts before ***jpws*** gives up and requests you try a different image.
 
-For the final close-comment block, we overwrite the last thirteen bytes of image data with a default string "*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e, 0xFF, 0xD9*".  
+For the final close-comment block, we overwrite the last thirteen bytes of the image with a default string "*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e, 0xFF, 0xD9*".  
 
-To have any chance of getting this to work, we have no choice but to overwrite bytes within a section of the image file that is compressed & encoded. This triggers X/Twitter to re-encode some (or all) of these bytes.  
+To have any chance of getting this to work, we have no choice but to overwrite bytes (using the above string) within a section of the image file that is compressed & encoded. This triggers X/Twitter to potensially re-encode/remove these bytes.  
 
-The first six bytes of the above string can help with the encoding and are also expendable, so it does not matter if they are changed or removed, but the following four bytes "0x23, 0x3E, 0x0D, 0x23" are crucial and need to be preserved by X/Twitter for the PowerShell script to work after tweeting the image. For some images, these four bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program.  
+The first six bytes of the string can help with the encoding and are expendable, so it does not matter if they are changed or removed, but the following four bytes "***0x23, 0x3E, 0x0D, 0x23***" are crucial and need to be preserved by ***X/Twitter*** for the ***PowerShell*** script to work after tweeting the image. For some images, these four bytes are preserved by ***X/Twitter***, but are changed or removed for other image, which will causes the embedded ***PowerShell*** script to fail.
 
-We can only find out which images work after tweeting them. Again, slightly decreasing image dimensions may help with compatiblity/encoding.
+We can only find out which images work after tweeting them. If an image fails to preseve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option ($ jpws -alt your_cover_image your_powershell_script), which will use a slightly different thirteen byte string, that usually works for images that have failed with the default string. Another potential fix is to manually decrease image dimensions using an editor such as GIMP.
 
-This repo contains a number of ready to use compatible images, should you find it difficult to find your own compatible cover image.  
+The first image below shows the 
+
+
+This repo contains a number of ready to use compatible images, should you want to save time in finding a working cover image. 
 
 A compatible image is an JPG that does not contain any occurrence of the close-comment block string (#>) and preserves the four crucial bytes (0x23, 0x3E, 0x0D, 0x23) near the end of the file, after the JPG-PowerShell polyglot image has been tweeted.
 
