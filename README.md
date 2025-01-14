@@ -58,7 +58,7 @@ A Progressive encoded image posted on X/Twitter, *within file and dimension size
 
 If X/Twitter re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: X/Twitter will re-encode sections of the image if bytes of the image data are modified. More on that later*. 
 
-The cover image must not contain any occurrence of the PowerShell close-comment block string "#>" (0x23, 0x3E), apart from the ones inserted by the program, as this will cause the PowerShell script to fail.  
+The cover image must not contain any occurrence of the PowerShell close-comment block string "#>" (0x23, 0x3E), apart from the ones inserted by the program, as this will break the PowerShell script.  
 
 Unfortunatly, with the comment-block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the image data is quite high. The larger the image, the greater the probablity of multiple hits. I would not even consider trying images larger than 400KB. 
 
