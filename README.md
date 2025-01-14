@@ -121,8 +121,6 @@ iwr -o fibo.ps1 "https://pbs.twimg.com/media/Gg2JRntX0AAB1A0?format=jpg&name=lar
 ```
 The ***iwr*** command will download the image from ***X/Twitter***, renames the image file, which includes the ***PowerShell*** extension, then executes the script in the image.
 
-https://github.com/user-attachments/assets/97e472d3-b425-4838-bd1c-11e4ce7c5d8e
-
 Alternatively, you can just manually download the image from ***X/Twitter*** (remember to click on the image within the post to fully expand it before saving).
 
 To run the script embedded with the image using Linux, just enter the following command within a terminal. There is no need to change the file extension with Linux. 
@@ -138,7 +136,5 @@ G:\demo> ren jpws_85681.jpg jpws_85681.ps1
 G:\demo> Unblock-File jpws_85681.ps1 (Only required for downloaded images or images taken from another machine).
 G:\demo> .\jpws_85681.ps1
 ```
-https://github.com/user-attachments/assets/c5c242e9-b073-47c8-9027-ed88b7f0b5c3
-
 ##
 
