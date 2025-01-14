@@ -48,9 +48,9 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 ## Image Compatibilty, Issues and Limitations.
 
-Always use a ***Progressive*** encoded ***JPG*** for your cover image. Progressive encoded ***JPG*** images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).  ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform.  There are plenty of images on ***X/Twitter*** which you could use for the cover image.
+Always use a ***Progressive*** encoded ***JPG*** for your cover image. These images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).  ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform.
 
-This program (*using the libjpeg-turbo library*) will re-encode your image if the format is not Progressive.
+This program (*using the libjpeg-turbo library*) will re-encode your image if the format is not Progressive, although image quality may suffer. It's recommended that you source your cover image directly from X/Twitter or use the ones supplied within this GitHub repo.
 
 A Progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  
 
