@@ -60,9 +60,9 @@ The cover image must not contain any occurrence of the ***PowerShell*** close-co
 
 Unfortunatly, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***512KB*** for the cover image. 
 
-If detected within the cover image, ***jpws*** (*using libjpeg-turbo & stb_image*) will attempt to elminate these close-comment block strings by slightly decreasing image dimensions. This will cause the image to be re-encoded, protentially removing those unwanted character sequences. The image will be checked again for the presence of that string, repeating the procedure of decreasing image dimensions, if required. There is a maximum of five decrease attempts before ***jpws*** gives up and requests you try a different image.
+If detected within the cover image, ***jpws*** (*using libjpeg-turbo & stb_image*) will attempt to eliminate these close-comment block strings by slightly decreasing image dimensions. This will cause the image to be re-encoded, protentially removing those unwanted character sequences. The image will be checked again for the presence of that string, repeating the procedure of decreasing image dimensions if required. There is a maximum of five decrease attempts before ***jpws*** gives up and requests you try a different image.
 
-For the final close-comment block, we overwrite the last thirteen bytes of image data with a default string "***0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9***".  
+For the final close-comment block, we overwrite the last thirteen bytes of image data with a default string "*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e, 0xFF, 0xD9*".  
 
 To have any chance of getting this to work, we have no choice but to overwrite bytes within a section of the image file that is compressed & encoded. This triggers X/Twitter to re-encode some (or all) of these bytes.  
 
