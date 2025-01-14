@@ -32,7 +32,7 @@ https://github.com/user-attachments/assets/b9e1888a-10c9-4933-aa7a-cae40219b87d
 
 An open-comment block is required as near to the start of the image file as possible.  
 
-This is achieved by writing the string "***\n<#\r\n***" (*0x0D, 0x3C, 0x23, 0x0D, 0x0A*), containing the two byte open-comment block characters, within the ***JFIF*** header segment ***FFE0***.  
+This is achieved by writing the string "*\n***<#***\r\n*" (*0x0D, ***0x3C, 0x23***, 0x0D, 0x0A*), containing the two byte open-comment block characters, within the ***JFIF*** header segment ***FFE0***.  
 
 These five bytes are conveniently preserved by ***X/Twitter***.  
 
@@ -54,7 +54,7 @@ This program (*using the libjpeg-turbo library*) will re-encode your image if th
 
 A Progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  
 
-If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode sections of the image if bytes of the image data are modified. More on that later*. 
+If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode sections of the image if bytes of the compressed image data are modified. More on that later*. 
 
 The cover image must not contain any occurrence of the ***PowerShell*** close-comment block string "***#>***" (*0x23, 0x3E*), apart from the ones inserted by the program, as this will break the ***PowerShell*** script.  
 
