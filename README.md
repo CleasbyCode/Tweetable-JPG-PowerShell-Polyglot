@@ -140,13 +140,8 @@ G:\demo> .\jpws_85681.ps1
 
 This project makes use of the following third-party libraries:  
 
-stb_image by Sean Barrett (“nothings”)
-libjpeg-turbo (see [***LICENSE***](https://github.com/libjpeg-turbo/libjpeg-turbo/blob/main/LICENSE.md) file)
+stb_image by Sean Barrett (“nothings”)  
+libjpeg-turbo (see [***LICENSE***](https://github.com/libjpeg-turbo/libjpeg-turbo/blob/main/LICENSE.md) file)  
 {This software is based in part on the work of the Independent JPEG Group.}
-
-
-
-
-
 ##
 
