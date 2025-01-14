@@ -34,7 +34,7 @@ An open-comment block is required as near to the start of the image file as poss
 
 This is achieved by writing the string "*\n<#\r\n*" (*0x0D, ***0x3C, 0x23***, 0x0D, 0x0A*), containing the two byte open-comment block characters, within the ***JFIF*** header segment ***FFE0***.  
 
-![JFIF Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/jfif.png) 
+![JFIF Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/jfif_block.png) 
 
 These five bytes are conveniently preserved by ***X/Twitter***.  
 
