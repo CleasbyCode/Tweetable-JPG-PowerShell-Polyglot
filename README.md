@@ -32,15 +32,15 @@ https://github.com/user-attachments/assets/b9e1888a-10c9-4933-aa7a-cae40219b87d
 
 An open-comment block is required as near to the start of the image file as possible.  
 
-This is achieved by writing the following five byte string "\n<#\r\n" (0x0D, 0x3C, 0x23, 0x0D, 0x0A), containing the two byte open-comment block characters, within the JFIF header segment ***FFE0***.  
+This is achieved by writing the following five byte string "***\n<#\r\n***" (*0x0D, 0x3C, 0x23, 0x0D, 0x0A*), containing the two byte open-comment block characters, within the ***JFIF*** header segment ***FFE0***.  
 
-These bytes within the image are conveniently preserved by X/Twitter.  
+These bytes within the image are conveniently preserved by ***X/Twitter***.  
 
-***Important: When saving images from X/Twitter, always click the image in the post to FULLY EXPAND it before saving. This ensures you get the original size image, with all the embedded data.***
+***Important: When saving images from X/Twitter, always click the image in the post to FULLY EXPAND it before saving. This ensures you get the original size image with all the embedded data.***
 
-The PowerShell script is stored at the end of the color profile data of the JPG image, which is also preserved by X/Twitter. We use the first PowerShell open-comment block within the JFIF header to ignore the ICC profile segment header ***FFE2*** along with the color profile data.  
+The ***PowerShell*** script is stored at the end of the color profile data of the ***JPG*** image, which is also preserved by ***X/Twitter***. We use the first ***PowerShell*** open-comment block within the ***JFIF*** header to ignore the ***ICC*** profile segment header ***FFE2*** along with the color profile data.  
 
-We then have a close-comment block at the end of the color profile data, followed by our PowerShell script, which now gets interpreted. At the end of the PowerShell script (*still within the color profile segment*) we use another open-comment block so that PowerShell ignores the remaining contents of the image file.  
+We then have a close-comment block at the end of the color profile data, followed by the ***PowerShell*** script, which now gets interpreted. At the end of the script (*still within the color profile segment*) we use another open-comment block so that ***PowerShell*** ignores the remaining contents of the image file.  
 
 Finally, for comment-block compliance, we need a close-comment block as near to the end of the image file as possible. 
 
@@ -48,25 +48,23 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 ## Image Compatibilty, Issues and Limitations.
 
-Always use a Progressive encoded JPG for your cover image. Progressive encoded JPG images are identifed by the segment marker "FFC2" (*Start of Frame 2/Progressive DCT*).  X/Twitter uses this method for encoding JPG images posted on its platform.  There are plenty of images on X/Twitter, which you could use for the cover image.
+Always use a ***Progressive*** encoded ***JPG*** for your cover image. Progressive encoded ***JPG*** images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).  ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform.  There are plenty of images on ***X/Twitter*** which you could use for the cover image.
 
 This program (*using the libjpeg-turbo library*) will re-encode your image if the format is not Progressive.
 
-A Progressive encoded image posted on X/Twitter, *within file and dimension size limits*, will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  
+A Progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  
 
-If X/Twitter re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: X/Twitter will re-encode sections of the image if bytes of the image data are modified. More on that later*. 
+If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode sections of the image if bytes of the image data are modified. More on that later*. 
 
-The cover image must not contain any occurrence of the PowerShell close-comment block string "#>" (0x23, 0x3E), apart from the ones inserted by the program, as this will break the PowerShell script.  
+The cover image must not contain any occurrence of the ***PowerShell*** close-comment block string "***#>***" (*0x23, 0x3E*), apart from the ones inserted by the program, as this will break the ***PowerShell*** script.  
 
-Unfortunatly, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. *jpws* has a maximum size limit of 512KB for the cover image. 
+Unfortunatly, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***512KB*** for the cover image. 
 
-If detected within the cover image, *jpws* (*using libjpeg-turbo & stb_image*) will attempt to elminate these close-comment block strings by slightly decreasing the image dimensions. This will cause the image to be re-encoded, protentially removing those unwanted character sequences. The image will be checked again for the presence of that string, repeating the procedure of decreasing image dimensions, if required. There is a maximum of five decrease attempts, before jpws gives up and requests you try a different image.
+If detected within the cover image, ***jpws*** (*using libjpeg-turbo & stb_image*) will attempt to elminate these close-comment block strings by slightly decreasing image dimensions. This will cause the image to be re-encoded, protentially removing those unwanted character sequences. The image will be checked again for the presence of that string, repeating the procedure of decreasing image dimensions, if required. There is a maximum of five decrease attempts before ***jpws*** gives up and requests you try a different image.
 
-I may try to automate this process in later versions of jpws.
+For the final close-comment block, we overwrite the last thirteen bytes of image data with a default string "***0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9***".  
 
-For the final close-comment block, we overwrite the last thirteen bytes of image data with a default string "0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e, 0xFF, 0xD9".  
-
-To have any chance of getting this to work, we have no choice but to modifying bytes within a section of the image file that is compressed & encoded. This triggers X/Twitter to re-encode some (or all) of these bytes.  
+To have any chance of getting this to work, we have no choice but to overwrite bytes within a section of the image file that is compressed & encoded. This triggers X/Twitter to re-encode some (or all) of these bytes.  
 
 The first six bytes of the above string can help with the encoding and are also expendable, so it does not matter if they are changed or removed, but the following four bytes "0x23, 0x3E, 0x0D, 0x23" are crucial and need to be preserved by X/Twitter for the PowerShell script to work after tweeting the image. For some images, these four bytes are retained by X/Twitter, but are removed or changed for others, making the image incompatible for this program.  
 
