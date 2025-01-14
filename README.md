@@ -32,9 +32,9 @@ https://github.com/user-attachments/assets/b9e1888a-10c9-4933-aa7a-cae40219b87d
 
 An open-comment block is required as near to the start of the image file as possible.  
 
-This is achieved by writing the following five byte string "***\n<#\r\n***" (*0x0D, 0x3C, 0x23, 0x0D, 0x0A*), containing the two byte open-comment block characters, within the ***JFIF*** header segment ***FFE0***.  
+This is achieved by writing the string "***\n<#\r\n***" (*0x0D, 0x3C, 0x23, 0x0D, 0x0A*), containing the two byte open-comment block characters, within the ***JFIF*** header segment ***FFE0***.  
 
-These bytes within the image are conveniently preserved by ***X/Twitter***.  
+These five bytes are conveniently preserved by ***X/Twitter***.  
 
 ***Important: When saving images from X/Twitter, always click the image in the post to FULLY EXPAND it before saving. This ensures you get the original size image with all the embedded data.***
 
