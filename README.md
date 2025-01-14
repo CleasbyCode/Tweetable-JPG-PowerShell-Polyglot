@@ -74,7 +74,7 @@ The first six bytes of the string can help with the encoding and are expendable,
 
 We can only find out which images work after tweeting them.  
 
-If an image fails to preseve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option:  
+If an image fails to preserve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option:  
 
 ```console
 user1@linuxbox:~/Desktop$ jpws -alt cover_image23.jpg fibo.ps1
