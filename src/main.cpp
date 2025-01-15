@@ -24,6 +24,11 @@ int main(int argc, char** argv) {
 	isAltOption = (argc > 3 && std::string(argv[1]) == "-alt"),
 	isInvalidOption = (argc > 3 && !isAltOption);
 
+    if (isInvalidOption) {
+        std::cerr << "\nInput Error: Invalid arguments. Expecting only \"-alt\" as the first optional argument.\n\n";
+        return 1;
+    }
+	
     const std::string IMAGE_FILENAME = isAltOption ? argv[2] : argv[1];
     std::string powershell_filename  = isAltOption ? argv[3] : argv[2];
 
