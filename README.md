@@ -1,4 +1,4 @@
-# Tweetable JPG-PowerShell Polyglot
+# Tweetable-JPG-PowerShell-Polyglot
 
 A simple CLI tool to embed a ***PowerShell*** script within a ***JPG*** image, creating a tweetable ***JPG-PowerShell*** polyglot file.  
 
