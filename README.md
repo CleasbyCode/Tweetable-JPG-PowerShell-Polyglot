@@ -62,7 +62,7 @@ The cover image must not contain any occurrence of the ***PowerShell*** close-co
 
 Unfortunatly, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***512KB*** for the cover image. 
 
-If only a single close-comment block string is detected, you will be given the option to modify one of the bytes directly within the cover image file. You can choose from four different byte replacements (*0x22, 0x2A, 0x1F & 0x24*). 
+If only a single close-comment block string is detected, you will be given the option to modify one of the bytes directly within the cover image file. You can choose from four different byte replacements (***0x22, 0x2A, 0x1F & 0x24***). 
 
 This change quite often works without any noticeable difference to the output image. It's an option worth trying for when there is just a single close-comment block sequence. Always check the output image in full screen mode, so that any distortions within the image are easily spotted. If the output image does appear corrupt/distorted, delete it, then retry ***jpws*** and select a different byte option.
 
@@ -70,15 +70,15 @@ If multiple sequences are detected within the cover image, ***jpws*** (*using li
 
 The image will be checked again for the presence of that two byte string, repeating the procedure of decreasing image dimensions, if required. There is a maximum of five decrease attempts before ***jpws*** gives up and requests you try a different image.
 
-For the final close-comment block, we overwrite the last thirteen bytes of the image with a default string "*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e, 0xFF, 0xD9*".  
+For the final close-comment block, we overwrite the last thirteen bytes of the image with a default string (*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e, 0xFF, 0xD9*).  
 
 To have any chance of getting this to work, we have no choice but to overwrite bytes (using the above string) within a section of the image file that is compressed & encoded. This triggers ***X/Twitter*** to potentially re-encode these bytes.  
 
-The first six bytes of the string can help with the encoding and are expendable, so it does not matter if they are changed or removed, but the following four bytes "***0x23, 0x3E, 0x0D, 0x23***" are crucial and need to be preserved by ***X/Twitter*** for the ***PowerShell*** script to work after tweeting the image. For some images, these four bytes are preserved by ***X/Twitter***, but are changed or removed for other image, which will causes the embedded ***PowerShell*** script to fail.
+The first six bytes of the string can help with the encoding and are expendable, so it does not matter if they are changed or removed, but the following four bytes (***0x23, 0x3E, 0x0D, 0x23***) are crucial and need to be preserved by ***X/Twitter*** for the ***PowerShell*** script to work after tweeting the image. For some images, these four bytes are preserved by ***X/Twitter***, but are changed or removed for other images, which will causes the embedded ***PowerShell*** script to fail.
 
 We can only find out which images work after tweeting them.  
 
-If an image fails to preserve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option:  
+If an image fails to correctly preserve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option:  
 
 ```console
 user1@linuxbox:~/Desktop$ jpws -alt cover_image23.jpg fibo.ps1
@@ -96,11 +96,11 @@ This second image shows the same section of the file, this time ***after*** bein
 
 This repo contains a number of ready to use compatible images, should you want to save time in finding a working cover image. 
 
-A compatible image is a ***JPG*** that does not contain any occurrence of the close-comment block string (***#>***) and preserves the four crucial bytes (*0x23, 0x3E, 0x0D, 0x23*) near the end of the file, after the ***JPG-PowerShell*** polyglot image has been tweeted.
+A compatible image is a ***JPG*** that does not contain any occurrence of the close-comment block string (***#>***) and preserves the four crucial bytes (***0x23, 0x3E, 0x0D, 0x23***) near the end of the file, after the ***JPG-PowerShell*** polyglot image has been tweeted.
 
 As mentioned earlier, when downloading an image from ***X/Twitter***, make sure to first click the image in the post to fully expand it, then save it, so that you get the full original size image. 
 
-X/Twitter allows a maximum size of ***10KB*** for the color profile data, the segment in which we are storing the ***PowerShell*** script. With the overhead of the profile data, you will have about ***9.5KB*** available for your ***PowerShell*** script.
+***X/Twitter*** has a maximum size limit of ***10KB*** for the color profile data, the segment in which we are storing the ***PowerShell*** script. With the overhead of the profile data, you will have about ***9.5KB*** available for your ***PowerShell*** script.
 
 ***PowerShell*** scripts that require the user to provide command-line arguments are currently not supported when embedded within the ***JPG*** image. This may change once I figure out how to do this.
 
