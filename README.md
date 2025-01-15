@@ -9,9 +9,9 @@ A simple CLI tool to embed a ***PowerShell*** script within a ***JPG*** image, c
 
 ```console
 
-user1@linuxbox:~/Downloads/Tweetable-JPG-PowerShell-Polyglot-main/src$ sudo apt-get install libturbojpeg-dev
-user1@linuxbox:~/Downloads/Tweetable-JPG-PowerShell-Polyglot-main/src$ g++ main.cpp -O2 -lturbojpeg -s -o jpws
-user1@linuxbox:~/Downloads/Tweetable-JPG-PowerShell-Polyglot-main/src$ sudo cp jpws /usr/bin
+user1@linuxbox:~/Downloads/src$ sudo apt-get install libturbojpeg-dev
+user1@linuxbox:~/Downloads/src$ g++ main.cpp -O2 -lturbojpeg -s -o jpws
+user1@linuxbox:~/Downloads/src$ sudo cp jpws /usr/bin
 
 user1@linuxbox:~/Desktop$ jpws
 
