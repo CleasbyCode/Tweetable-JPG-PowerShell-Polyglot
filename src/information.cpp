@@ -11,7 +11,7 @@ $ g++ main.cpp -O2 -s -o jpws
 $ sudo cp jpws /usr/bin
 $ jpws
 		
-Usage: jpws <cover_image> <powershell_file>
+Usage: jpws [-alt] <cover_image> <powershell_file>
        jpws --info
 		
 Share your "PowerShell-embedded" JPG image on X/Twitter.
