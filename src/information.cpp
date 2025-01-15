@@ -16,8 +16,8 @@ Usage: jpws [-alt] <cover_image> <powershell_file>
 		
 Share your "PowerShell-embedded" JPG image on X/Twitter.
 
-Max script size is 10KB. 
-Max image size is 5MB. (Image + PowerShell script).
+Max PowerShell script size is 10KB. 
+Max cover image size is 512KB.
 
 https://github.com/CleasbyCode/jpws
 
