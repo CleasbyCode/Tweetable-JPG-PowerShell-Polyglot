@@ -7,7 +7,8 @@ CLI tool for embedding a PowerShell script within a tweetable JPG image file.
 
 Compile & run jpws (Linux):
 		
-$ g++ main.cpp -O2 -s -o jpws
+$ sudo apt-get install libturbojpeg-dev		
+$ g++ main.cpp -O2 -lturbojpeg -s -o jpws
 $ sudo cp jpws /usr/bin
 $ jpws
 		
