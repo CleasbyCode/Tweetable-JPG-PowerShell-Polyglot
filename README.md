@@ -9,7 +9,7 @@ A simple CLI tool to embed a ***PowerShell*** script within a ***JPG*** image, c
 
 ```console
 
-user1@linuxbox:~/Downloads/jpws-main/src/jpws$ g++ main.cpp -O2 -s -o jpws
+user1@linuxbox:~/Downloads/jpws-main/src/jpws$ g++ main.cpp -O2 -lturbojpeg -s -o jpws
 user1@linuxbox:~/Downloads/jpws-main/src/jpws$ sudo cp jpws /usr/bin
 
 user1@linuxbox:~/Desktop$ jpws
