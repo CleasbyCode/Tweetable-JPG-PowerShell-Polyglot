@@ -109,7 +109,7 @@ As mentioned earlier, when downloading an image from ***X/Twitter***, make sure 
 The easiest way to download the image from ***X/Twitter*** and run the embedded ***PowerShell*** script, is to use the ***wget*** command for *Linux and the ***iwr*** command for Windows.
 **Make sure ***PowerShell*** is installed on your Linux PC.*  
 
-You will first need to get the image link address from ***X/Twitter***, once you have posted the embedded image.
+You will first need to get the image link address from ***X/Twitter***, after you have posted the embedded image.
 
 Click the image in the post to fully expand it, then right-click on the image and select "*Copy image address*" from the menu.
 
