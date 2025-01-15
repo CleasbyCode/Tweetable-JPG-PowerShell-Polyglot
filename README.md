@@ -3,7 +3,7 @@
 A simple CLI tool to embed a ***PowerShell*** script within a ***JPG*** image, creating a tweetable ***JPG-PowerShell*** polyglot file.  
 
 ![Demo Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/cover_image38.jpg) 
-***{Image Credit: [@McC3Kat](https://x.com/McC3Kat)} Tweetable JPG-PowerShell Polglot Image. (Embedded with simple Game_of_Life script)***  
+***{Image Credit: [@awesome_visuals](https://x.com/awesome_visuals)} Tweetable JPG-PowerShell Polglot Image. (Embedded with Game_of_Life script)***  
   
 ## Usage (***Linux***)
 
