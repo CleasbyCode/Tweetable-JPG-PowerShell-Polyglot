@@ -15,13 +15,17 @@ int main(int argc, char** argv) {
         return 0;
     }
     
-    if (argc !=3) {
-        std::cout << "\nUsage: jpws <cover_image> <powershell_script>\n\t\bjpws --info\n\n";
+    if (argc < 3 || argc > 4) {
+        std::cout << "\nUsage: jpws [-alt] <cover_image> <powershell_script>\n\t\bjpws --info\n\n";
         return 1;
     }
 
-    const std::string IMAGE_FILENAME = argv[1];
-    std::string powershell_filename = argv[2];
+    const bool
+	isAltOption = (argc > 3 && std::string(argv[1]) == "-alt"),
+	isInvalidOption = (argc > 3 && !isAltOption);
+
+    const std::string IMAGE_FILENAME = isAltOption ? argv[2] : argv[1];
+    std::string powershell_filename  = isAltOption ? argv[3] : argv[2];
 
     constexpr const char* REG_EXP = ("(\\.[a-zA-Z_0-9\\.\\\\\\s\\-\\/]+)?[a-zA-Z_0-9\\.\\\\\\s\\-\\/]+?(\\.[a-zA-Z0-9]+)?");
     const std::regex regex_pattern(REG_EXP);
@@ -57,5 +61,5 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    jpws(IMAGE_FILENAME, powershell_filename);
+    jpws(IMAGE_FILENAME, powershell_filename, isAltOption);
 }
