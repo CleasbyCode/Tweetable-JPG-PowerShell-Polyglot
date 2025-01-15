@@ -162,7 +162,6 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 		decrease = true;
 
 		while(close_comment_block_pos != Image_Vec.size()) {
-			
 			resizeImage(Image_Vec, quality, decrease);
 			--decrease_attempts;
 			--quality;
