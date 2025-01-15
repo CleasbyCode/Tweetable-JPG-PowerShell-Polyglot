@@ -2,7 +2,7 @@
 //
 //	To compile program (Linux):
 
-//	$ sudo apt-get install libturbojpeg-dev 
+//	$ sudo apt-get install libturbojpeg-dev
 // 	$ g++ main.cpp -O2 -lturbojpeg -s -o jpws
 //	$ sudo cp jpws /usr/bin
 
