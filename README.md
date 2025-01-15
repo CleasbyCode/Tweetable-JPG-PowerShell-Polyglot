@@ -102,7 +102,7 @@ As mentioned earlier, when downloading an image from ***X/Twitter***, make sure 
 
 ***X/Twitter*** has a maximum size limit of ***10KB*** for the color profile data, the segment in which we are storing the ***PowerShell*** script. With the overhead of the profile data, you will have about ***9.5KB*** available for your ***PowerShell*** script.
 
-***PowerShell*** scripts that require the user to provide command-line arguments are currently not supported when embedded within the ***JPG*** image. This may change once I figure out how to do this.
+***PowerShell*** scripts that use a "script-level" ***param(...) block*** will ***not work*** when embedded within an image. The param(...) block enforces strict parsing at the start of the script. The only things allowed before the param(...) block are comments or blank lines (and sometimes a #requires statement). But having certain binary bytes before param(...) will break parsing.
 
 ## Executing The Embedded PowerShell Script
 
@@ -127,7 +127,7 @@ The ***iwr*** command will download the image from ***X/Twitter***, renames the 
 
 Alternatively, you can just manually download the image from ***X/Twitter*** (remember to click on the image within the post to fully expand it before saving).
 
-To run the script embedded with the image using Linux, just enter the following command within a terminal. There is no need to change the file extension with Linux. 
+To run the script embedded within the image using Linux, just enter the following command within a terminal. There is no need to change the file extension with Linux. 
 
 ```console
 $ pwsh jpws_85681.jpg
