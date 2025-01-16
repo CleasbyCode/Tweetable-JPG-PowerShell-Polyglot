@@ -67,7 +67,7 @@ If only a single close-comment block string is detected, you will be given the o
 
 This change quite often works without any noticeable difference to the output image. It's an option worth trying for when there is just a single close-comment block sequence. Always check the output image in full screen mode, so that any distortions within the image are easily spotted. If the output image does appear corrupt/distorted, delete it, then retry ***jpws*** and select a different byte option.
 
-If multiple sequences are detected within the cover image, ***jpws*** (*using libjpeg-turbo & stb_image*) will attempt to eliminate these character sequences by slightly decreasing image dimensions. This will cause the image to be re-encoded, potentially removing those unwanted close-comment blocks. 
+If multiple sequences are detected within the cover image, ***jpws*** (*using libjpeg-turbo & stb_image*) will attempt to eliminate these character sequences by slightly decreasing image dimensions. This will cause the image to be re-encoded, potentially removing those unwanted close-comment blocks. Athough, this could also generate more sequences. Such is life.
 
 The image will be checked again for the presence of that two byte string, repeating the procedure of decreasing image dimensions, if required. There is a maximum of five decrease attempts before ***jpws*** gives up and requests you try a different image.
 
