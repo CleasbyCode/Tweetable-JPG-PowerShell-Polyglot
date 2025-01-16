@@ -122,7 +122,7 @@ The ***wget*** command downloads the image from ***X/Twitter***, then the *pwsh*
 
 For ***iwr***, use the following command:
 ```console
-iwr -o GameOfLife.ps1 "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";.\GameOfLife.ps1
+iwr -o Game.ps1 "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";.\Game.ps1
 ```
 The ***iwr*** command will download the image from ***X/Twitter***, renames the image file, which includes the ***PowerShell*** extension, then executes the script in the image.
 
