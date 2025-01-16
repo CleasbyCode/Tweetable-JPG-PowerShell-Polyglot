@@ -116,7 +116,7 @@ Click the image in the post to fully expand it, then right-click on the image an
 
 For ***wget***, use the following command (enclose the image link address within quotation marks):
 ```console
- wget "https://pbs.twimg.com/media/Gg2JRntX0AAB1A0?format=jpg&name=large";pwsh Gg2JR*
+wget "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";pwsh GhZ*
 ```
 The ***wget*** command downloads the image from ***X/Twitter***, then the *pwsh* command followed by the name of the downloaded image runs the embedded ***PowerShell*** script.
 
