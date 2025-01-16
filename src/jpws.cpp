@@ -1,5 +1,4 @@
 int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bool isAltOption) {
-
 	constexpr uint32_t MAX_IMAGE_FILE_SIZE		= 512 * 1024;	// 512KB.
 	constexpr uint16_t MAX_POWERSHELL_FILE_SIZE 	= 10 * 1024; 	// 10KB. 
 
@@ -109,10 +108,11 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 
 	if (sequence_count == 1) {
 		std::cout << "\nJust one close-comment block character sequence was found within the cover image.\n"
-			  << "\nInstead of reducing image dimensions, which we do automatically for multiple occurrences"
+			  << "\nInstead of reducing image dimensions, which is done automatically for multiple occurrences"
 			  << "\nof the comment-block sequence, we can attempt to directly modify a single byte."
 			  << "\n\nThis quite often works without any noticeable difference to the output cover image." 
-			  << "\nIf the output image does appear corrupt/distorted, retry jpws and select a different byte option."
+			  << "\nAlways check the output image in full screen, so that distortions are easily spotted." 
+			  << "\nIf it does appear distorted, delete it, then retry jpws and select a different byte option."
 			  << "\n\nReplace character 0x23 with:\n"
 	 		  << "\n Option_1: 0x22"
  			  << "\n Option_2: 0x2A"
@@ -120,7 +120,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 			  << "\n Option_4: 0x24"
 			  << "\n Option_5: Reduce the image dimensions"
 			  << "\n\nChoose your option (1-5) then press Enter: ";
-
+		
 		bool isChoiceInvalid = true;
 		int choice = 0;
 
