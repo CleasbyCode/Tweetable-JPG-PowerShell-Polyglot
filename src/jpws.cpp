@@ -88,9 +88,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 			quality = 100,
 			decrease_attempts = 25,
 			dec_val = 0;
-		uint32_t 
-			comment_block_pos = 0,
-			sequence_index = 0;
+		uint32_t comment_block_pos = 0;
 
 		resizeImage(Image_Vec, quality, dec_val, decrease);
 		decrease = true;
