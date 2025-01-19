@@ -50,25 +50,17 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 ## Image Compatibilty, Issues and Limitations.
 
-Always use a ***progressive*** encoded ***JPG*** for your cover image. These images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).  ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform.
+This program (*using the libjpeg-turbo library*) will re-encode your image as a ***progressive*** encoded ***JPG***. These images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).  ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform, if required.
 
-This program (*using the libjpeg-turbo library*) will re-encode your image if the format is not progressive, although image quality may suffer. It's recommended that you source your cover image directly from ***X/Twitter*** or use the ones supplied within this GitHub repo.
-
-A progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  
-
-If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode sections of the image if bytes of the compressed image data are modified. More on that later*. 
+A progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode sections of the image if bytes of the compressed image data are corrupted/modified. More on that later*. 
 
 The cover image ***must not*** contain any occurrence of the ***PowerShell*** close-comment block string "***#>***" (*0x23, 0x3E*), apart from the ones inserted by the program, as this will break the ***PowerShell*** script.  
 
-Unfortunatly, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***512KB*** for the cover image. 
-
-If only a single close-comment block string is detected, you will be given the option to modify one of the bytes directly within the cover image file. You can choose from four different byte replacements (***0x22, 0x2A, 0x1F & 0x24***). 
-
-This change quite often works without any noticeable difference to the output image. It's an option worth trying for when there is just a single close-comment block sequence. Always check the output image in full screen mode, so that any distortions within the image are easily spotted. If the output image does appear corrupt/distorted, delete it, then retry ***jpws*** and select a different byte option.
+Unfortunatly, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***1MB*** for your cover image. 
 
 If multiple sequences are detected within the cover image, ***jpws*** (*using libjpeg-turbo & stb_image*) will attempt to eliminate these character sequences by slightly decreasing image dimensions. This will cause the image to be re-encoded, potentially removing those unwanted close-comment blocks. Athough, this could also generate more sequences. Such is life.
 
-The image will be checked again for the presence of that two byte string, repeating the procedure of decreasing image dimensions, if required. There is a maximum of five decrease attempts before ***jpws*** gives up and requests you try a different image.
+The image will be checked again for the presence of that two byte string, repeating the procedure of decreasing image dimensions & quality, if required. There is a maximum default of twenty-five decrease attempts before ***jpws*** gives up and requests you try a different image.
 
 For the final close-comment block, we overwrite the last thirteen bytes of the image with a default string (*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e, 0xFF, 0xD9*).  
 
