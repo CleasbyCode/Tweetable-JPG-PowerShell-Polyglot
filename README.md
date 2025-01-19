@@ -74,7 +74,7 @@ The program ***ImageMagick*** does inform us about this corruption when we use t
 
 The change of bytes triggers ***X/Twitter*** to re-encode/repair this small section of data (see images below).  ***ImageMagick*** no longer reports corruption when we check one of these downloaded images.
 
-The first six bytes of the string can help with the encoding and are expendable, it does not matter if they are changed or removed, but the following four bytes (***0x23, 0x3E, 0x0D, 0x23***) are crucial and need to be preserved by ***X/Twitter*** for the ***PowerShell*** script to work after tweeting the image. For many images, these four bytes (even the whole string) are preserved by ***X/Twitter***, but occasionally they are partially or completly removed for some images, which will cause the embedded ***PowerShell*** script to fail.
+The first six bytes of the string can help with the encoding and are expendable, as it does not matter if they are changed or removed, but the following four bytes (***0x23, 0x3E, 0x0D, 0x23***) are crucial and need to be preserved by ***X/Twitter*** for the ***PowerShell*** script to work after tweeting the image. For many images, these four bytes (even the whole string) are preserved by ***X/Twitter***, but occasionally they are partially or completly removed for some images, which will cause the embedded ***PowerShell*** script to fail.
 
 We can only find out which images work after tweeting them.  
 
