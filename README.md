@@ -102,7 +102,7 @@ As mentioned earlier, when downloading an image from ***X/Twitter***, make sure 
 
 ***X/Twitter*** has a maximum size limit of ***10KB*** for the color profile data segment (***0xFF 0xE2 0x28 0x00***), in which we are storing the ***PowerShell*** script. With the overhead of the profile data, you will have about ***9.5KB*** available for your ***PowerShell*** script.
 
-***PowerShell*** scripts that use a "script-level" ***param(...) block*** will ***not work*** when embedded within an image. The param(...) block enforces strict parsing at the start of the script. The only things allowed before the param(...) block are comments or blank lines (and sometimes a #requires statement). But having certain binary bytes before param(...) will break parsing. A param(...) block inside a function, rather than at the top of the script, should work fine. 
+***PowerShell*** scripts that use a top "script-level" ***param(...) block*** will ***not work*** when embedded within an image. The param(...) block enforces strict parsing at the start of the script. The only things allowed before the param(...) block are comments or blank lines (and sometimes a #requires statement). But having certain binary bytes before param(...) will break parsing. A param(...) block inside a function, rather than at the top of the script, should work fine. 
 
 ## Executing The Embedded PowerShell Script
 
