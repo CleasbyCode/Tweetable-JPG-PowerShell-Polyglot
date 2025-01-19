@@ -52,7 +52,9 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 This program (*using the libjpeg-turbo library*) will re-encode your image as a ***progressive*** encoded ***JPG***. These images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).   ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform, if required.
 
-A progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will *not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode/repair sections of the image if bytes of the compressed image data are corrupted/modified. More on that later*. 
+A progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will *not be re-encoded.  
+
+What you post will be the same as what you download, which is useful for our requirements.  If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode/repair sections of the image if bytes of the compressed image data are corrupted/modified. More on that later*. 
 
 The cover image ***must not*** contain any occurrence of the ***PowerShell*** close-comment block string "***#>***" (*0x23, 0x3E*), apart from the ones inserted by the program, as this will break the ***PowerShell*** script.  
 
@@ -60,7 +62,9 @@ Unfortunatly, with the close-comment block string length being only two bytes, t
 
 We can quite often remove these comment-block characters by using the following procedure.  
 
-After initially re-encoding the cover image as a progressive JPG with a maximum quality setting, the image will be searched for the two-byte comment-block sequence. If found, the image is re-encoded (*using libjpeg-turbo & stb_image*) with the width & height dimension size being reduced by one pixel, along with the quality value being decremented. The modified image is searched again for the two-byte sequence and the process is repeated, incrementing the dimension size and quality reduction values with each cycle, until no comment-block sequences are found. There is a default of twenty-five decrease attempts before ***jpws*** gives up and requests you try a different image. 
+After initially re-encoding the cover image as a progressive JPG with a maximum quality setting, the image will be searched for the two-byte comment-block sequence. If found, the image is re-encoded (*using libjpeg-turbo & stb_image*) with the width & height dimension size being reduced by one pixel, along with the quality value being decremented.  
+
+The modified image is searched again for the two-byte sequence and the process is repeated, incrementing the dimension size and quality reduction values with each cycle, until no comment-block sequences are found. There is a default of twenty-five decrease attempts before ***jpws*** gives up and requests you try a different image. 
 
 For the final close-comment block, we overwrite the last thirteen bytes of the image with a default string (*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e, 0xFF, 0xD9*).  
 
