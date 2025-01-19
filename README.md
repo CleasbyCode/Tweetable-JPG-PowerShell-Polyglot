@@ -58,9 +58,9 @@ The cover image ***must not*** contain any occurrence of the ***PowerShell*** cl
 
 Unfortunatly, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***1MB*** for your cover image. 
 
-If multiple sequences are detected within the cover image, ***jpws*** (*using libjpeg-turbo & stb_image*) will attempt to eliminate these character sequences by slightly decreasing image dimensions. This will cause the image to be re-encoded, potentially removing those unwanted close-comment blocks. Athough, this could also generate more sequences. Such is life.
+We can quite often remove these comment-block characters by using the following procedure.  
 
-The image will be checked again for the presence of that two byte string, repeating the procedure of decreasing image dimensions & quality, if required. There is a maximum default of twenty-five decrease attempts before ***jpws*** gives up and requests you try a different image.
+After initially re-encoding the cover image as a progressive JPG with a maximum quality setting, the image will be searched for the two-byte comment-block sequence. If found, the image is re-encoded (*using libjpeg-turbo & stb_image*) with the width & height dimension size being reduced by one pixel, along with the quality value being decremented. The modified image is searched again for the two-byte sequence and the process is repeated, incrementing the dimension size and quality reduction values with each cycle, until no comment-block sequences are found. There is a default of twenty-five decrease attempts before ***jpws*** gives up and requests you try a different image. 
 
 For the final close-comment block, we overwrite the last thirteen bytes of the image with a default string (*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e, 0xFF, 0xD9*).  
 
