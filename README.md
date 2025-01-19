@@ -66,13 +66,13 @@ After initially re-encoding the cover image as a progressive JPG with a maximum 
 
 The modified image is searched again for the two-byte sequence and the process is repeated, incrementing the dimension size and quality reduction values with each cycle, until no comment-block sequences are found. There is a default of twenty-five decrease attempts before ***jpws*** gives up and requests you try a different image. 
 
-For the final close-comment block, we overwrite the last thirteen bytes of the image with a default string (*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e, 0xFF, 0xD9*).  
+For the final close-comment block, we overwrite the last eleven bytes of image data with a default string (*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e*).  
 
 To have any chance of getting this to work, we have no choice but to overwrite bytes (using the above string) within a section of the image that is compressed/encoded. While this technically corrupts the image, most images show no visable signs of distortion (miniscule for those that do) and no program refuses to display the image. Twitter allows it to be posted without complaint.  
 
 The program ***ImageMagick*** does inform us about this corruption when we use the ***identify -verbose*** option. "*Corrupt JPEG data: premature end of data segment*".
 
-The change of bytes triggers ***X/Twitter*** to re-encode/repair this section of bytes.  ***ImageMagick*** no longer reports corruption when we check one of these downloaded images.
+The change of bytes triggers ***X/Twitter*** to re-encode/repair this small section of data (see images below).  ***ImageMagick*** no longer reports corruption when we check one of these downloaded images.
 
 The first six bytes of the string can help with the encoding and are expendable, it does not matter if they are changed or removed, but the following four bytes (***0x23, 0x3E, 0x0D, 0x23***) are crucial and need to be preserved by ***X/Twitter*** for the ***PowerShell*** script to work after tweeting the image. For many images, these four bytes (even the whole string) are preserved by ***X/Twitter***, but occasionally they are partially or completly removed for some images, which will cause the embedded ***PowerShell*** script to fail.
 
@@ -84,9 +84,9 @@ If an image fails to correctly preserve the crucial four bytes, you can retry **
 user1@linuxbox:~/Desktop$ jpws -alt cover_image23.jpg fibo.ps1
 ```
 
-With this option selected, ***jpws*** will use a slightly different thirteen byte string, that often works for images that have failed with the default string. 
+With this option selected, ***jpws*** will use a slightly different eleven byte string, that often works for images that have failed with the default string. 
 
-The first image below shows the default thirteen byte close-comment block string from a ***JPG-PowerShell*** polyglot image ***before*** it has been tweeted.  
+The first image below shows the default eleven byte close-comment block string from a ***JPG-PowerShell*** polyglot image ***before*** it has been tweeted.  
 
 ![BEFORE Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/before_tweet.png) 
 
