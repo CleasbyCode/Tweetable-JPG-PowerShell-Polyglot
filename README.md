@@ -48,7 +48,7 @@ Finally, for comment-block compliance, we need a close-comment block as near to 
 
 Of course, things are never as straightforward as we would like them to be. The title for this section should probably of been "***How It Sometimes Works***".  
 
-## Image Compatibilty, Issues and Limitations.
+## Image Compatibility, Issues and Limitations.
 
 This program (*using the libjpeg-turbo library*) will first re-encode your image as a ***progressive*** encoded ***JPG***. These images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).   ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform, if required.
 
