@@ -50,9 +50,9 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 ## Image Compatibilty, Issues and Limitations.
 
-This program (*using the libjpeg-turbo library*) will re-encode your image as a ***progressive*** encoded ***JPG***. These images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).  ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform, if required.
+This program (*using the libjpeg-turbo library*) will re-encode your image as a ***progressive*** encoded ***JPG***. These images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).   ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform, if required.
 
-A progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode sections of the image if bytes of the compressed image data are corrupted/modified. More on that later*. 
+A progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will *not be re-encoded. What you post will be the same as what you download, which is useful for our requirements.  If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode/repair sections of the image if bytes of the compressed image data are corrupted/modified. More on that later*. 
 
 The cover image ***must not*** contain any occurrence of the ***PowerShell*** close-comment block string "***#>***" (*0x23, 0x3E*), apart from the ones inserted by the program, as this will break the ***PowerShell*** script.  
 
