@@ -60,7 +60,7 @@ The cover image ***must not*** contain any occurrence of the ***PowerShell*** cl
 
 Unfortunatly, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***1MB*** for your cover image. 
 
-We can quite often remove these comment-block characters by using the following procedure.  
+We can usually remove these comment-block characters by using the following procedure.  
 
 After initially re-encoding the cover image as a progressive JPG with a maximum quality setting, the image will be searched for the two-byte comment-block sequence. If found, the image is re-encoded (*using libjpeg-turbo & stb_image*) with the width & height dimension size being reduced by one pixel, along with the quality value being decremented.  
 
