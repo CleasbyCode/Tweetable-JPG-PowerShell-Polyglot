@@ -4,7 +4,7 @@
 // stb_image by Sean Barrett (“nothings”).
 // https://github.com/nothings/stb
 
-void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, bool decrease)
+void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_val, bool decrease)
 {
     tjhandle decompressor = tjInitDecompress();
     if (!decompressor) {
@@ -27,7 +27,7 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, bool decrease
         throw std::runtime_error(std::string("tjDecompressHeader3: ") + tjGetErrorStr());
     }
 
-    if (width < 2 || height < 2) {
+    if (width < dec_val || height < dec_val) {
         tjDestroy(decompressor);
         throw std::runtime_error("Image is too small to shrink by 1 pixel.");
     }
@@ -57,8 +57,8 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, bool decrease
     int newHeight = 0;
 
     if(decrease){
-    	newWidth  = width  - 1;
-    	newHeight = height - 1;
+    	newWidth  = width  - dec_val;
+    	newHeight = height - dec_val;
     } else {
 	newWidth  = width;
 	newHeight = height;
@@ -98,7 +98,7 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, bool decrease
             TJPF_RGB,
             &jpegBuf,
             &jpegSize,
-            TJSAMP_444,  
+            TJSAMP_420,  
             quality,     
             flags
         ) != 0)

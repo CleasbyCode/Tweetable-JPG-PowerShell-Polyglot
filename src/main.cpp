@@ -1,9 +1,7 @@
 //	JPG-PowerShell Polyglot for X/Twitter (jpws v1.0) Created by Nicholas Cleasby (@CleasbyCode) 12/12/2024
 //
 //	To compile program (Linux):
-
-//	$ sudo apt-get install libturbojpeg-dev
-// 	$ g++ main.cpp -O2 -lturbojpeg -s -o jpws
+// 	$ g++ main.cpp -O2 -s -o jpws
 //	$ sudo cp jpws /usr/bin
 
 // 	Run it:
@@ -26,11 +24,11 @@ int main(int argc, char** argv) {
 	isAltOption = (argc > 3 && std::string(argv[1]) == "-alt"),
 	isInvalidOption = (argc > 3 && !isAltOption);
 
-    if (isInvalidOption) {
+     if (isInvalidOption) {
         std::cerr << "\nInput Error: Invalid arguments. Expecting only \"-alt\" as the first optional argument.\n\n";
         return 1;
     }
-	
+
     const std::string IMAGE_FILENAME = isAltOption ? argv[2] : argv[1];
     std::string powershell_filename  = isAltOption ? argv[3] : argv[2];
 

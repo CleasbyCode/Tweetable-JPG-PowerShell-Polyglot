@@ -18,7 +18,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <iterator>
 
 #include "profileVec.cpp"
 #include "searchFunc.cpp"
@@ -35,7 +34,7 @@ bool writeFile(std::vector<uint8_t>&);
 
 void
 	eraseSegments(std::vector<uint8_t>&),
-	resizeImage(std::vector<uint8_t>&, uint8_t, bool),
+	resizeImage(std::vector<uint8_t>&, uint8_t, uint8_t, bool),
 	displayInfo();
 
 int jpws(const std::string&, std::string&, bool);

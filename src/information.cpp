@@ -7,21 +7,19 @@ CLI tool for embedding a PowerShell script within a tweetable JPG image file.
 
 Compile & run jpws (Linux):
 		
-user1@linuxbox:~/Downloads/Tweetable-JPG-PowerShell-Polyglot-main/src$ sudo apt-get install libturbojpeg-dev
-user1@linuxbox:~/Downloads/Tweetable-JPG-PowerShell-Polyglot-main/src$ g++ main.cpp -O2 -lturbojpeg -s -o jpws
-user1@linuxbox:~/Downloads/Tweetable-JPG-PowerShell-Polyglot-main/src$ sudo cp jpws /usr/bin
-
+$ g++ main.cpp -O2 -s -o jpws
+$ sudo cp jpws /usr/bin
 $ jpws
 		
-Usage: jpws [-alt] <cover_image> <powershell_file>
+Usage: jpws <cover_image> <powershell_file>
        jpws --info
 		
 Share your "PowerShell-embedded" JPG image on X/Twitter.
 
-Max PowerShell script size is 10KB. 
-Max cover image size is 512KB.
+Max script size is 10KB. 
+Max image size is 5MB. (Image + PowerShell script).
 
-https://github.com/CleasbyCode/Tweetable-JPG-PowerShell-Polyglot
+https://github.com/CleasbyCode/jpws
 
 )";
 }
