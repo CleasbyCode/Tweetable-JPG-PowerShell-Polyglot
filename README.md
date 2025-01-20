@@ -72,7 +72,7 @@ The modified image is searched again for the two-byte sequence and the process i
 
 For the final close-comment block, we overwrite the last eleven bytes of image data with a default string (*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e*).  
 
-To have any chance of getting this to work, we have no choice but to overwrite bytes (using the above string) within a section of the image that is compressed/encoded. While this technically corrupts the image, most display no visible signs of distortion (miniscule for those that do) and no program refuses to display the image. Twitter allows it to be posted without complaint.  
+To have any chance of getting this to work, we have no choice but to overwrite bytes (using the above string) within a section of the image that is compressed/encoded. While this technically corrupts the image, most show no visible signs of distortion (miniscule for those that do) and no program refuses to display the image. Twitter allows it to be posted without complaint.  
 
 The program ***ImageMagick*** does inform us about this corruption when we use the ***identify -verbose*** option. "*Corrupt JPEG data: premature end of data segment*".
 
