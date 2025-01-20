@@ -82,7 +82,7 @@ The first six bytes of the string can help with the encoding and are expendable,
 
 For many images, these four bytes (even the whole string) are preserved by ***X/Twitter***, but occasionally they are partially or completely removed for some images, which will cause the embedded ***PowerShell*** script to fail.
 
-We can only find out which images work after tweeting them.  
+We can only find out which images initially work after tweeting them.  It is recommended that you test tweet the output image to make sure the crucial bytes are preserved before intentionally sharing the image with others. 
 
 If an image fails to correctly preserve the crucial four bytes, you can retry ***jpws*** using the ***-alt*** option:  
 
