@@ -40,9 +40,9 @@ These five bytes are conveniently preserved by ***X/Twitter***.
 
 ***When downloading images from X/Twitter, always click the image in the post to FULLY EXPAND it before saving. This ensures you get the original size image with all the embedded data.***
 
-The ***PowerShell*** script is stored at the end of the color profile data of the ***JPG*** image, which is also preserved. We use the first ***PowerShell*** open-comment block within the ***JFIF*** header to ignore the ***ICC*** profile segment header ***FFE2*** along with the color profile data.  
+The ***PowerShell*** script is stored at the end of the colour profile data of the ***JPG*** image, which is also preserved. We use the first ***PowerShell*** open-comment block within the ***JFIF*** header to ignore the ***ICC*** profile segment header ***FFE2*** along with the colour profile data.  
 
-We then have a close-comment block at the end of the color profile data, followed by the ***PowerShell*** script, which now gets interpreted. At the end of the script (*still within the color profile segment*) we use another open-comment block so that ***PowerShell*** ignores the remaining contents of the image file.  
+We then have a close-comment block at the end of the colour profile data, followed by the ***PowerShell*** script, which now gets interpreted. At the end of the script (*still within the colour profile segment*) we use another open-comment block so that ***PowerShell*** ignores the remaining contents of the image file.  
 
 Finally, for comment-block compliance, we need a close-comment block as near to the end of the image file as possible. 
 
@@ -52,7 +52,7 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 This program (*using the libjpeg-turbo library*) will first re-encode your image as a ***progressive*** encoded ***JPG***.  
 
-These images are identifed by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).   ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform, if required.
+These images are identified by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).   ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform, if required.
 
 A progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will *not be re-encoded.  
 
@@ -62,7 +62,7 @@ If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would
 
 The cover image ***must not*** contain any occurrence of the ***PowerShell*** close-comment block string "***#>***" (*0x23, 0x3E*), apart from the ones inserted by the program, as this will break the ***PowerShell*** script.  
 
-Unfortunately, with the close-comment block string length being only two bytes, the probablilty that this character sequence will appear somewhere within the cover image is obviously quite high. The larger the image, the greater the probablity of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***1MB*** for your cover image. 
+Unfortunately, with the close-comment block string length being only two bytes, the probability that this character sequence will appear somewhere within the cover image is obviously quite high. The larger the image, the greater the probability of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***1MB*** for your cover image. 
 
 It is often possible to remove these comment-block character sequences by using the following procedure.  
 
@@ -72,7 +72,7 @@ The modified image is searched again for the two-byte sequence and the process i
 
 For the final close-comment block, we overwrite the last eleven bytes of image data with a default string (*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e*).  
 
-To have any chance of getting this to work, we have no choice but to overwrite bytes (using the above string) within a section of the image that is compressed/encoded. While this technically corrupts the image, most images show no visable signs of distortion (miniscule for those that do) and no program refuses to display the image. Twitter allows it to be posted without complaint.  
+To have any chance of getting this to work, we have no choice but to overwrite bytes (using the above string) within a section of the image that is compressed/encoded. While this technically corrupts the image, most display no visible signs of distortion (miniscule for those that do) and no program refuses to display the image. Twitter allows it to be posted without complaint.  
 
 The program ***ImageMagick*** does inform us about this corruption when we use the ***identify -verbose*** option. "*Corrupt JPEG data: premature end of data segment*".
 
@@ -80,7 +80,7 @@ The change of bytes triggers ***X/Twitter*** to re-encode/repair this small sect
 
 The first six bytes of the string can help with the encoding and are expendable, as it does not matter if they are changed or removed, but the following four bytes (***0x23, 0x3E, 0x0D, 0x23***) are crucial and need to be preserved by ***X/Twitter*** for the ***PowerShell*** script to work after tweeting the image.  
 
-For many images, these four bytes (even the whole string) are preserved by ***X/Twitter***, but occasionally they are partially or completly removed for some images, which will cause the embedded ***PowerShell*** script to fail.
+For many images, these four bytes (even the whole string) are preserved by ***X/Twitter***, but occasionally they are partially or completely removed for some images, which will cause the embedded ***PowerShell*** script to fail.
 
 We can only find out which images work after tweeting them.  
 
@@ -106,7 +106,7 @@ A compatible image is a ***JPG*** that does not contain any occurrence of the cl
 
 As mentioned earlier, when downloading an image from ***X/Twitter***, make sure to first click the image in the post to fully expand it, then save it, so that you get the full original size image. 
 
-***X/Twitter*** has a maximum size limit of ***10KB*** for the color profile data segment (***0xFF 0xE2 0x28 0x00***), in which we are storing the ***PowerShell*** script. With the overhead of the profile data, you will have about ***9.5KB*** available for your ***PowerShell*** script.
+***X/Twitter*** has a maximum size limit of ***10KB*** for the colour profile data segment (***0xFF 0xE2 0x28 0x00***), in which we are storing the ***PowerShell*** script. With the overhead of the profile data, you will have about ***9.5KB*** available for your ***PowerShell*** script.
 
 ***PowerShell*** scripts that use a top "script-level" ***param(...) block*** will ***not work*** when embedded within an image. The param(...) block enforces strict parsing at the start of the script. The only things allowed before the param(...) block are comments or blank lines (and sometimes a #requires statement). But having certain binary bytes before param(...) will break parsing. A param(...) block inside a function, rather than at the top of the script, should work fine. 
 
