@@ -66,7 +66,7 @@ Unfortunately, with the close-comment block string length being only two bytes, 
 
 It is often possible to remove these comment-block character sequences by using the following procedure.  
 
-After initially re-encoding the cover image as a progressive JPG with a maximum quality setting, the image will be searched for the two-byte comment-block sequence. If found, the image is re-encoded (*using libjpeg-turbo & stb_image*) with the width & height dimension size being reduced by one pixel, along with the quality value being decremented.  
+After initially re-encoding the cover image as a progressive JPG with a maximum quality setting, ***jpws*** will search the image file for the two-byte comment-block sequence. If found, the image is re-encoded (*using libjpeg-turbo & stb_image*) with the width & height dimension size being reduced by one pixel, along with the quality value being decremented.  
 
 The modified image is searched again for the two-byte sequence and the process is repeated, incrementing the dimension size and quality reduction values with each cycle, until no comment-block sequences are found. There is a default of twenty-five decrease attempts before ***jpws*** gives up and requests you try a different image. 
 
