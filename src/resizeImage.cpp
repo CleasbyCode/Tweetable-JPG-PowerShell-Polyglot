@@ -4,6 +4,7 @@
 // stb_image by Sean Barrett (“nothings”).
 // https://github.com/nothings/stb
 
+
 void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_val, bool decrease)
 {
     tjhandle decompressor = tjInitDecompress();
@@ -56,12 +57,12 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_v
     int newWidth = 0;
     int newHeight = 0;
 
-    if(decrease){
-    	newWidth  = width  - dec_val;
-    	newHeight = height - dec_val;
+    if (decrease) {
+        newWidth  = width  - dec_val;
+        newHeight = height - dec_val;
     } else {
-	newWidth  = width;
-	newHeight = height;
+        newWidth  = width;
+        newHeight = height;
     }
 
     std::vector<uint8_t> resized(newWidth * newHeight * channels);
@@ -89,6 +90,7 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_v
 
     int flags = TJFLAG_PROGRESSIVE;  
 
+    // Use the detected jpegSubsamp directly
     if (tjCompress2(
             compressor,
             resized.data(),
@@ -98,7 +100,7 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_v
             TJPF_RGB,
             &jpegBuf,
             &jpegSize,
-            TJSAMP_420,  
+            jpegSubsamp,  // Use the detected subsampling here
             quality,     
             flags
         ) != 0)

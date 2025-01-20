@@ -1,5 +1,4 @@
 int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bool isAltOption) {
-
 	constexpr uint32_t MAX_IMAGE_FILE_SIZE		= 1024 * 1024;	// 1MB.
 	constexpr uint16_t MAX_POWERSHELL_FILE_SIZE 	= 10 * 1024; 	// 10KB. 
 
@@ -86,27 +85,22 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 
 		uint8_t 
 			quality = 100,
-			decrease_attempts = 25,
+			decrease_attempts = 30,
 			dec_val = 0;
-		
+	
 		resizeImage(Image_Vec, quality, dec_val, decrease);
 		decrease = true;
 
 		uint32_t comment_block_pos = searchFunc(Image_Vec, 0, 0, COMMENT_BLOCK_SIG);
 
 		while(comment_block_pos != Image_Vec.size()) {
-		
 			Image_Vec.clear();
 			Image_Vec = Image_Vec_Copy; // Use the fresh copy.
-		
 			--decrease_attempts;
 			++dec_val;
-			--quality;
-
+			quality -= (decrease_attempts >= 25) ? 0 : 1;
 			resizeImage(Image_Vec, quality, dec_val, decrease);
-		
 			comment_block_pos = searchFunc(Image_Vec, 0, 0, COMMENT_BLOCK_SIG);
-		
 			if (!decrease_attempts){
 		  	std::cerr << "\nImage Compatibility Error:\n\nProcedure failed to remove close-comment block sequences from cover image.\n"
 			   	 << "Try another image or use an editor such as GIMP to manually reduce (scale) image dimensions.\n\n";
