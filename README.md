@@ -1,6 +1,6 @@
 # jpws
 
-Embed a ***PowerShell*** script within a ***JPG*** image, creating a tweetable ***JPG-PowerShell*** polyglot file.  
+Embed a ***PowerShell*** script within a ***JPG*** image to create a tweetable ***JPG-PowerShell*** polyglot file.  
 
 ![Demo Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/jpws_73210.jpg)  
 ***{Image Credit: [@awesome_visuals](https://x.com/awesome_visuals)} GameOfLife.ps1 embedded within this tweetable JPG image.***  
