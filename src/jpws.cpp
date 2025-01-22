@@ -80,7 +80,9 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 	bool 
 		decrease = false,
 		modified = false;
-
+				 
+	std::cout << std::endl;
+				 
 	if (encodeImage) {	// Skip this section for our repo compatible images.
 
 		uint8_t 
