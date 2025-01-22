@@ -98,7 +98,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 			Image_Vec = Image_Vec_Copy; // Use the fresh copy.
 			--decrease_attempts;
 			++dec_val;
-			quality -= (decrease_attempts % 2 == 0) ? 1 : 0;
+			quality -= (decrease_attempts >= 15) ? 0 : 1;
 			resizeImage(Image_Vec, quality, dec_val, decrease);
 			comment_block_pos = searchFunc(Image_Vec, 0, 0, COMMENT_BLOCK_SIG);
 			if (!decrease_attempts){
