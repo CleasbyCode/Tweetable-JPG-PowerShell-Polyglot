@@ -14,7 +14,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
     		std::cerr << "\nImage Size Error: The image file size is "
               		<< (IMAGE_FILE_SIZE < MIN_IMAGE_FILE_SIZE
                  	 	? "smaller than the minimum allowed: 134 Bytes"
-                  		: "greater than the maximum allowed: 1MBKB")
+                  		: "greater than the maximum allowed: 1MB")
               		<< ".\n\n";
     		return 1;
 	}
