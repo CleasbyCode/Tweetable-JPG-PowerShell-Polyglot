@@ -102,13 +102,15 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 			resizeImage(Image_Vec, quality, dec_val, decrease);
 			comment_block_pos = searchFunc(Image_Vec, 0, 0, COMMENT_BLOCK_SIG);
 			if (!decrease_attempts){
-		  	std::cerr << "\nImage Compatibility Error:\n\nProcedure failed to remove comment block sequences from the cover image.\n"
+		  	std::cerr << "\n\nImage Compatibility Error:\n\nProcedure failed to remove comment block sequences from the cover image.\n"
 			   	 << "Try another image or use an editor such as GIMP to manually reduce (scale) image dimensions.\n\n";
 	          	return 1;
 			}
 		}
 	}
-
+				 
+	std::cout << std::endl;
+				 
 	modified = decrease;
 
 	std::vector<uint8_t> 
