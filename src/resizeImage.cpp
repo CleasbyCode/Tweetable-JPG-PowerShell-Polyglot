@@ -65,6 +65,9 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_v
         newHeight = height;
     }
 
+    std::cout << "\r" << std::string(44, ' ') << "\r"; 
+    std::cout << "Qaulity: " << (int)quality << "% | Width: " << newWidth << " | Height: " << newHeight << std::flush; 
+    
     std::vector<uint8_t> resized(newWidth * newHeight * channels);
 
     int success = stbir_resize_uint8(
