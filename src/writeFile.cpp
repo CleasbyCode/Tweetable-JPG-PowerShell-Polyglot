@@ -18,6 +18,7 @@ bool writeFile(std::vector<uint8_t>& Vec) {
 	
 	std::vector<uint8_t>().swap(Vec);
 	
-	std::cout << "\nSaved \"PowerShell-embedded\" JPG image: " << IMAGE_FILENAME << " (" << IMAGE_SIZE << " bytes).\n";
+	std::cout << "\nSaved JPG-PowerShell polyglot image: " << IMAGE_FILENAME << " (" << IMAGE_SIZE << " bytes).\n";
+	
 	return true;
 }
