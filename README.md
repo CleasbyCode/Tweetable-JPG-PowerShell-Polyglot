@@ -119,7 +119,7 @@ Click the image in the post to fully expand it, then ***right-click*** on the im
 
 Linux: 
 ```console
-wget "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";pwsh GhZ*
+wget -O game.jpg "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";pwsh game.jpg
 ```
 
 Windows:
