@@ -34,7 +34,7 @@ An open comment-block is required as near to the beginning of the image file as 
 
 This is achieved by writing the two byte comment-block "**<#**" (*0x3C, 0x23*) within the ***JFIF*** segment (***FFE0***).  
 
-These bytes with the JFIF segment are conveniently preserved by ***X/Twitter***.  
+These bytes within the ***JFIF*** segment are conveniently preserved by ***X/Twitter***.  
 
 ![JFIF Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/first_block.png) 
 
