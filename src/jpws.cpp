@@ -84,17 +84,18 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 	std::cout << '\n';
 
 	if (encodeImage) {	// Skip this section for our repo compatible images.
-
+		
 		uint8_t 
 			quality = 100,
 			dec_val = 0;
 	
 		uint16_t decrease_attempts = 300;
-		
+
 		std::cout << "Checking cover image for comment-block close sequences \"#>\" (0x23, 0x3E).\n\n"
 			  << "Image quality & dimensions will be reduced in an attempt to remove these sequences.\n\n";
-		
+
 		resizeImage(Image_Vec, quality, dec_val, decrease);
+
 		decrease = true;
 
 		uint32_t comment_block_pos = searchFunc(Image_Vec, 0, 0, COMMENT_BLOCK_SIG);
@@ -138,7 +139,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 
 	uint8_t
 		bits = 16,	
-		jfif_comment_block_index = 0x0D,					
+		jfif_comment_block_index = 0x0C,					
 		segment_size_field_index = 0x16,
 		profile_size_field_index = 0x26;		
 		
@@ -163,7 +164,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 		Image_Vec[profile_size_field_index++] = (PROFILE_SIZE >> (bits -= 8)) & 0xFF;
 	}
 	
-	constexpr uint8_t JFIF_COMMENT_BLOCK[] {0x0D, 0x3C, 0x23, 0x0D, 0x0A};
+	constexpr uint8_t JFIF_COMMENT_BLOCK[] {0x58, 0x54, 0x57, 0x0A, 0x3C, 0x23};
 
 	std::copy(std::begin(JFIF_COMMENT_BLOCK), std::end(JFIF_COMMENT_BLOCK), Image_Vec.begin() + jfif_comment_block_index);
 
