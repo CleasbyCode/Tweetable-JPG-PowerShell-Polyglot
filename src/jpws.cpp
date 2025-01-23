@@ -1,5 +1,5 @@
 int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bool isAltOption) {
-	constexpr uint32_t MAX_IMAGE_FILE_SIZE		= 1024 * 1024;	// 1MB.
+	constexpr uint32_t MAX_IMAGE_FILE_SIZE		= 2048 * 1024;	// 2MB.
 	constexpr uint16_t MAX_POWERSHELL_FILE_SIZE 	= 10 * 1024; 	// 10KB. 
 
 	constexpr uint8_t 
@@ -14,7 +14,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
     		std::cerr << "\nImage Size Error: The image file size is "
               		<< (IMAGE_FILE_SIZE < MIN_IMAGE_FILE_SIZE
                  	 	? "smaller than the minimum allowed: 134 Bytes"
-                  		: "greater than the maximum allowed: 1MB")
+                  		: "greater than the maximum allowed: 2MB")
               		<< ".\n\n";
     		return 1;
 	}
@@ -80,16 +80,17 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 	bool 
 		decrease = false,
 		modified = false;
-				 
-	std::cout << std::endl;
-				 
+
+	std::cout << '\n';
+
 	if (encodeImage) {	// Skip this section for our repo compatible images.
 
 		uint8_t 
 			quality = 100,
-			decrease_attempts = 30,
 			dec_val = 0;
 	
+		uint16_t decrease_attempts = 300;
+
 		resizeImage(Image_Vec, quality, dec_val, decrease);
 		decrease = true;
 
@@ -100,19 +101,19 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 			Image_Vec = Image_Vec_Copy; // Use the fresh copy.
 			--decrease_attempts;
 			++dec_val;
-			quality -= (decrease_attempts >= 15) ? 0 : 1;
+			quality -= (decrease_attempts % 15 == 0) ? 2 : 0;
 			resizeImage(Image_Vec, quality, dec_val, decrease);
 			comment_block_pos = searchFunc(Image_Vec, 0, 0, COMMENT_BLOCK_SIG);
 			if (!decrease_attempts){
-		  	std::cerr << "\n\nImage Compatibility Error:\n\nProcedure failed to remove comment block sequences from the cover image.\n"
+		  	std::cerr << "\n\nImage Compatibility Error:\n\nProcedure failed to remove close-comment block sequences from cover image.\n"
 			   	 << "Try another image or use an editor such as GIMP to manually reduce (scale) image dimensions.\n\n";
 	          	return 1;
 			}
 		}
 	}
-				 
-	std::cout << std::endl;
-				 
+
+	std::cout << '\n';
+
 	modified = decrease;
 
 	std::vector<uint8_t> 
@@ -135,9 +136,12 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 	uint8_t
 		bits = 16,	
 		jfif_comment_block_index = 0x0D,					
-		segment_size_field_index = 0x16;		
+		segment_size_field_index = 0x16,
+		profile_size_field_index = 0x26;		
 		
-	const size_t SEGMENT_SIZE = (Profile_Vec.size() + JIFF_SIG_LENGTH) - segment_size_field_index;
+	const size_t 
+		SEGMENT_SIZE = (Profile_Vec.size() + JIFF_SIG_LENGTH) - segment_size_field_index,
+		PROFILE_SIZE = SEGMENT_SIZE - bits;
 	
 	if (SEGMENT_SIZE > MAX_POWERSHELL_FILE_SIZE) {
 		std::cerr <<"\nSegment Size Error: The profile segment (FFE2) exceeds the maximum size limit of 10KB.\n\n";
@@ -147,7 +151,13 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 	Image_Vec.insert(Image_Vec.begin() + JIFF_SIG_LENGTH , Profile_Vec.begin(), Profile_Vec.end());
 
 	while (bits) {
-		Image_Vec[segment_size_field_index++] = (SEGMENT_SIZE >> (bits -= 8)) & 0xff;
+		Image_Vec[segment_size_field_index++] = (SEGMENT_SIZE >> (bits -= 8)) & 0xFF;
+	}
+
+	bits = 32;
+	
+	while (bits) {
+		Image_Vec[profile_size_field_index++] = (PROFILE_SIZE >> (bits -= 8)) & 0xFF;
 	}
 	
 	constexpr uint8_t JFIF_COMMENT_BLOCK[] {0x0D, 0x3C, 0x23, 0x0D, 0x0A};
