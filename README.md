@@ -54,7 +54,7 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 These images are identified by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).   ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform.
 
-A progressive encoded image posted on ***X/Twitter***, (*within file & dimension size limits*), will *not be re-encoded.  
+A progressive encoded image posted on ***X/Twitter***, *within file & dimension size limits*, will *not be re-encoded.  
 
 What you post will be the same as what you download.  **Note: ***X/Twitter*** will re-encode/repair sections of the image if bytes of the compressed image data are corrupted/modified. More on that later*. 
 
@@ -66,7 +66,7 @@ It is often possible to remove these comment-block character sequences by using 
 
 After initially re-encoding the cover image as a progressive JPG with a maximum quality setting, ***jpws*** will search the image file for the two-byte comment-block sequence. If found, the image is re-encoded (*using libjpeg-turbo & stb_image*) with the width & height dimension size being reduced by one pixel. Image quality only starts to decrease 2% every 15th decrease cycle.
 
-The modified image is searched again for the two-byte sequence and the process is repeated, incrementing the dimension size reduction value with each cycle, until no comment-block sequences are found. There is a default of three hundred decrease attempts before ***jpws*** gives up and requests you either try a different image or manually reduce the current image's dimensions (scale) using an editor, such as GIMP. 
+The modified image is searched again for the two-byte sequence and the process is repeated, incrementing the dimension size reduction value with each cycle, until no comment-block sequences are found. There is a default of three hundred decrease attempts before ***jpws*** gives up and requests you either use a different image or manually reduce the current image's dimensions (scale) using an editor, such as ***GIMP***, then retry ***jpws***. 
 
 For the final close-comment block, we overwrite the last eleven bytes of image data with a default string (*0x00, 0x00, 0x20, 0x20, 0x00, 0x00, ***0x23, 0x3E, 0x0D, 0x23***, 0x9e*).  
 
@@ -88,7 +88,7 @@ If an image fails to correctly preserve the crucial four bytes, you can retry **
 user1@linuxbox:~/Desktop$ jpws -alt cover_image23.jpg fibo.ps1
 ```
 
-With this option selected, ***jpws*** will use a slightly different eleven byte string, that often works for images that have failed with the default string. Manually reducing the image dimensions (scale) using GIMP and retrying ***jpws*** is another option. 
+With this option selected, ***jpws*** will use a slightly different eleven byte string, that often works for images that have failed with the default string. Manually reducing the image dimensions (scale) using ***GIMP*** and retrying ***jpws*** is another option. 
 
 The first image below shows the default eleven byte close-comment block string from a ***JPG-PowerShell*** polyglot image ***before*** it has been tweeted.  
 
@@ -106,28 +106,26 @@ As mentioned earlier, when downloading an image from ***X/Twitter***, make sure 
 
 ***X/Twitter*** has a maximum size limit of ***10KB*** for the colour profile data segment (***0xFF 0xE2 0x28 0x00***), in which we are storing the ***PowerShell*** script. With the overhead of the profile data, you will have about ***9.5KB*** available for your ***PowerShell*** script.
 
-***PowerShell*** scripts that use a top "script-level" ***param(...) block*** will ***not work*** when embedded within an image. The param(...) block enforces strict parsing at the start of the script. The only things allowed before the param(...) block are comments or blank lines (and sometimes a #requires statement). But having certain binary bytes before param(...) will break parsing. A param(...) block inside a function, rather than at the top of the script, should work fine. 
+***PowerShell*** scripts that use a top "script-level" ***param(...) block*** will ***not work*** when embedded within an image. The param block enforces strict parsing at the start of the script. The only things allowed before the param block are comments or blank lines (and sometimes a #requires statement). But having certain binary bytes before param will break parsing. A param block inside a function, rather than at the top of the script, should work fine. 
 
 ## Executing The Embedded PowerShell Script
 
-The easiest way to download the image from ***X/Twitter*** and run the embedded ***PowerShell*** script, is to use the ***wget*** command for *Linux and the ***iwr*** command for Windows.
+The easiest way to download the image from ***X/Twitter*** and run the embedded ***PowerShell*** script, is to use ***wget*** for *Linux and ***iwr*** for Windows.
 **Make sure ***PowerShell*** is installed on your Linux PC.*  
 
 You will first need to get the image link address from ***X/Twitter***, after you have posted the embedded image.
 
-Click the image in the post to fully expand it, then right-click on the image and select "*Copy image address*" from the menu.
+Click the image in the post to fully expand it, then ***right-click*** on the image and select "***Copy image address***" from the menu.
 
-For ***wget***, use the following command (enclose the image link address within quotation marks):
+For ***wget***, use the following command (enclose the address within quotation marks):
 ```console
 wget "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";pwsh GhZ*
 ```
-The ***wget*** command downloads the image from ***X/Twitter***, then the *pwsh* command followed by the name of the downloaded image runs the embedded ***PowerShell*** script.
 
 For ***iwr***, use the following command:
 ```console
 iwr -OutFile Game.ps1 "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";.\Game.ps1
 ```
-The ***iwr*** command will download the image from ***X/Twitter***, renames the image file, which includes the ***PowerShell*** extension, then executes the script in the image.
 
 Alternatively, you can just manually download the image from ***X/Twitter*** (remember to click on the image within the post to fully expand it before saving).
 
@@ -136,7 +134,7 @@ To run the script embedded within the image using Linux, just enter the followin
 ```console
 $ pwsh jpws_85681.jpg
 ```
-For Windows, after downloading the image from ***X/Twitter***, you will need to rename the .jpg file extension to .ps1, also, depending on the Windows/PowerShell execution policy,
+For Windows, after downloading the image from ***X/Twitter***, you will need to rename the ***.jpg*** file extension to ***.ps1***, also, depending on the Windows/PowerShell execution policy,
 you will probably need to unblock the file before you can run the embedded script. You can see why the ***iwr*** option is the most convenient. 
 
 ```console
