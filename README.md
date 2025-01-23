@@ -50,7 +50,7 @@ Of course, things are never as straightforward as we would like them to be. The 
 
 ## Compatibility, Issues and Limitations.
 
-Using the libjpeg-turbo library, ***jpws*** will first re-encode the cover image as a ***progressive*** encoded ***JPG***.  
+Using the *libjpeg-turbo library*, ***jpws*** will first re-encode the cover image as a ***progressive*** encoded ***JPG***.  
 
 These images are identified by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).   ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform.
 
