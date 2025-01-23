@@ -30,11 +30,11 @@ https://github.com/user-attachments/assets/2e49ea69-7e33-4b43-bcba-cb0a9678a4f7
 
 ***PowerShell comment blocks!***
 
-An open-comment block is required as near to the start of the image file as possible.  
+An open comment-block is required as near to the start of the image file as possible.  
 
-This is achieved by writing the string "*\n<#\r\n*" (*0x0D, ***0x3C, 0x23***, 0x0D, 0x0A*), containing the two byte open-comment block characters, within the ***JFIF*** header segment ***FFE0***.  
+This is achieved by writing the two byte open comment-block "**<#**" (*0x3C, 0x23*) within the ***JFIF*** segment (***FFE0***).  
 
-These five bytes are conveniently preserved by ***X/Twitter***.  
+These bytes with the JFIF segment are conveniently preserved by ***X/Twitter***.  
 
 ![JFIF Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/first_block.png) 
 
