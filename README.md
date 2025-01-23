@@ -48,17 +48,15 @@ Finally, for comment-block compliance, we need a close-comment block as near to 
 
 Of course, things are never as straightforward as we would like them to be. The title for this section should probably of been "***How It Sometimes Works***".  
 
-## Image Compatibility, Issues and Limitations.
+## Compatibility, Issues and Limitations.
 
-This program (*using the libjpeg-turbo library*) will first re-encode your image as a ***progressive*** encoded ***JPG***.  
+***jpws*** (*using the libjpeg-turbo library*) will first re-encode the cover image as a ***progressive*** encoded ***JPG***.  
 
-These images are identified by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).   ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform, if required.
+These images are identified by the segment marker "***FFC2***" (*Start of Frame 2/Progressive DCT*).   ***X/Twitter*** uses this method for encoding ***JPG*** images posted on its platform.
 
-A progressive encoded image posted on ***X/Twitter***, (*within file and dimension size limits*), will *not be re-encoded.  
+A progressive encoded image posted on ***X/Twitter***, (*within file & dimension size limits*), will *not be re-encoded.  
 
-What you post will be the same as what you download, which is useful for our requirements.  
-
-If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would never work.   **Note: ***X/Twitter*** will re-encode/repair sections of the image if bytes of the compressed image data are corrupted/modified. More on that later*. 
+What you post will be the same as what you download.  **Note: ***X/Twitter*** will re-encode/repair sections of the image if bytes of the compressed image data are corrupted/modified. More on that later*. 
 
 The cover image ***must not*** contain any occurrence of the ***PowerShell*** close-comment block string "***#>***" (*0x23, 0x3E*), apart from the ones inserted by this program, as this will break the ***PowerShell*** script.  
 
@@ -90,7 +88,7 @@ If an image fails to correctly preserve the crucial four bytes, you can retry **
 user1@linuxbox:~/Desktop$ jpws -alt cover_image23.jpg fibo.ps1
 ```
 
-With this option selected, ***jpws*** will use a slightly different eleven byte string, that often works for images that have failed with the default string. Manually reducing the image dimensions (scale) using GIMP and retrying ***jpws*** is another option to get this working. 
+With this option selected, ***jpws*** will use a slightly different eleven byte string, that often works for images that have failed with the default string. Manually reducing the image dimensions (scale) using GIMP and retrying ***jpws*** is another option. 
 
 The first image below shows the default eleven byte close-comment block string from a ***JPG-PowerShell*** polyglot image ***before*** it has been tweeted.  
 
