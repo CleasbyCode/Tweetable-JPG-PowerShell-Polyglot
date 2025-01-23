@@ -90,7 +90,7 @@ If an image fails to correctly preserve the crucial four bytes, you can retry **
 user1@linuxbox:~/Desktop$ jpws -alt cover_image23.jpg fibo.ps1
 ```
 
-With this option selected, ***jpws*** will use a slightly different eleven byte string, that often works for images that have failed with the default string. Manually reducing the image dimensions (scale) using GIMP and retyring ***jpws*** is another option to get this working. 
+With this option selected, ***jpws*** will use a slightly different eleven byte string, that often works for images that have failed with the default string. Manually reducing the image dimensions (scale) using GIMP and retrying ***jpws*** is another option to get this working. 
 
 The first image below shows the default eleven byte close-comment block string from a ***JPG-PowerShell*** polyglot image ***before*** it has been tweeted.  
 
@@ -127,7 +127,7 @@ The ***wget*** command downloads the image from ***X/Twitter***, then the *pwsh*
 
 For ***iwr***, use the following command:
 ```console
-iwr -o Game.ps1 "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";.\Game.ps1
+iwr -OutFile Game.ps1 "https://pbs.twimg.com/media/GhZTR8BXgAACc9Q?format=jpg&name=medium";.\Game.ps1
 ```
 The ***iwr*** command will download the image from ***X/Twitter***, renames the image file, which includes the ***PowerShell*** extension, then executes the script in the image.
 
