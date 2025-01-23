@@ -36,7 +36,7 @@ This is achieved by writing the string "*\n<#\r\n*" (*0x0D, ***0x3C, 0x23***, 0x
 
 These five bytes are conveniently preserved by ***X/Twitter***.  
 
-![JFIF Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/jfif_block.png) 
+![JFIF Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/first_block.png) 
 
 ***When downloading images from X/Twitter, always click the image in the post to FULLY EXPAND it before saving. This ensures you get the original size image with all the embedded data.***
 
