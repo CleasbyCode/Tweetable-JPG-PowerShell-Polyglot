@@ -62,7 +62,7 @@ If ***X/Twitter*** re-encoded an image each time it was posted, ***jpws*** would
 
 The cover image ***must not*** contain any occurrence of the ***PowerShell*** close-comment block string "***#>***" (*0x23, 0x3E*), apart from the ones inserted by this program, as this will break the ***PowerShell*** script.  
 
-Unfortunately, with the close-comment block string length being only two bytes, the probability that this character sequence will appear somewhere within the cover image is obviously quite high. The larger the image, the greater the probability of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***1MB*** for your cover image. 
+Unfortunately, with the close-comment block string length being only two bytes, the probability that this character sequence will appear somewhere within the cover image is obviously quite high. The larger the image, the greater the probability of multiple comment-block character sequences. ***jpws*** has a maximum size limit of ***2MB*** for your cover image. 
 
 It is often possible to remove these comment-block character sequences by using the following procedure.  
 
