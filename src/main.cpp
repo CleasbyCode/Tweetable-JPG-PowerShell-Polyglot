@@ -1,4 +1,4 @@
-//	JPG-PowerShell Polyglot for X/Twitter (jpws v1.0) Created by Nicholas Cleasby (@CleasbyCode) 12/12/2024
+//	JPG-PowerShell Polyglot for X/Twitter (jpws v1.1) Created by Nicholas Cleasby (@CleasbyCode) 12/12/2024
 //
 //	To compile program (Linux):
 // 	$ sudo apt-get install libturbojpeg-dev
