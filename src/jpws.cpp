@@ -90,7 +90,10 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 			dec_val = 0;
 	
 		uint16_t decrease_attempts = 300;
-
+		
+		std::cout << "Checking cover image for comment-block close sequences \"#>\" (0x23, 0x3E).\n\n"
+			  << "Image quality & dimensions will be reduced in an attempt to remove these sequences.\n\n";
+		
 		resizeImage(Image_Vec, quality, dec_val, decrease);
 		decrease = true;
 
@@ -169,7 +172,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 	}
 
 	if (modified) {
-		std::cout << "\nBy reducing image dimensions and quality, close-comment block sequences\nwere succesfully removed from this image.\n"
+		std::cout << "\nComment-block close sequences succesfully removed from image.\n"
 			  << "\nPlease check to make sure size & quality of cover image is acceptable.\n";
 	}
 	std::cout << "\nComplete!\n\n";
