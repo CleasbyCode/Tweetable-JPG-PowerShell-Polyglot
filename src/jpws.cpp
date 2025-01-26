@@ -1,4 +1,4 @@
-int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bool isAltOption) {
+int jpws(const std::string& IMAGE_FILENAME, const std::string& POWERSHELL_FILENAME, ArgOption lastBlockString) {
 	constexpr uint32_t MAX_IMAGE_FILE_SIZE		= 2048 * 1024;	// 2MB.
 	constexpr uint16_t MAX_POWERSHELL_FILE_SIZE 	= 10 * 1024; 	// 10KB. 
 
@@ -8,7 +8,9 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 
 	const size_t 
 		IMAGE_FILE_SIZE 	= std::filesystem::file_size(IMAGE_FILENAME),
-		POWERSHELL_FILE_SIZE 	= std::filesystem::file_size(powershell_filename);
+		POWERSHELL_FILE_SIZE 	= std::filesystem::file_size(POWERSHELL_FILENAME);
+
+	bool shouldEncodeImage = false;
 
 	if (IMAGE_FILE_SIZE < MIN_IMAGE_FILE_SIZE || IMAGE_FILE_SIZE > MAX_IMAGE_FILE_SIZE) {
     		std::cerr << "\nImage Size Error: The image file size is "
@@ -30,7 +32,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 
 	std::ifstream
 		image_file_ifs(IMAGE_FILENAME, std::ios::binary),
-		powershell_file_ifs(powershell_filename, std::ios::binary);
+		powershell_file_ifs(POWERSHELL_FILENAME, std::ios::binary);
 
 	if (!image_file_ifs || !powershell_file_ifs) {
 		std::cerr << "\nRead File Error: Unable to read " << (!image_file_ifs 
@@ -44,8 +46,6 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 	
 	image_file_ifs.read(reinterpret_cast<char*>(Image_Vec.data()), IMAGE_FILE_SIZE);
 	image_file_ifs.close();
-
-	bool encodeImage = Image_Vec[0x0D] != 0x19;
 
 	std::vector<uint8_t> PowerShell_Vec;
 	PowerShell_Vec.resize(POWERSHELL_FILE_SIZE); 
@@ -66,6 +66,12 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 		return 1;
 	}
 
+	constexpr uint8_t COMPATIBLE_IMAGE_VAL = 0x19;
+
+	if (Image_Vec[0x0D] != COMPATIBLE_IMAGE_VAL) {
+		shouldEncodeImage = true;
+	}
+	
 	eraseSegments(Image_Vec);
 	
 	Image_Vec.insert(Image_Vec.begin(), std::begin(JFIF_SIG), std::end(JFIF_SIG));
@@ -78,54 +84,59 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
         }
 
 	bool 
-		decrease = false,
-		modified = false;
+		shouldDecreaseVals = false,
+		isImageModified = false;
 
 	std::cout << '\n';
 
-	if (encodeImage) {	// Skip this section for our repo compatible images.
-		
-		uint8_t 
-			quality = 100,
-			dec_val = 0;
-	
-		uint16_t decrease_attempts = 300;
+	if  (shouldEncodeImage) {	
+
+		uint8_t quality_val = 100;
+			
+		uint16_t 
+			decrease_attempts = 300,
+			decrease_dims_val = 0;
 
 		std::cout << "Checking cover image for comment-block close sequences \"#>\" (0x23, 0x3E).\n\n"
 			  << "Image quality & dimensions will be reduced in an attempt to remove these sequences.\n\n";
 
-		resizeImage(Image_Vec, quality, dec_val, decrease);
-
-		decrease = true;
+		resizeImage(Image_Vec, quality_val, decrease_dims_val, shouldDecreaseVals);
+		
+		isImageModified = true;
 
 		uint32_t comment_block_pos = searchFunc(Image_Vec, 0, 0, COMMENT_BLOCK_SIG);
+
+		shouldDecreaseVals = true;
 
 		while(comment_block_pos != Image_Vec.size()) {
 			Image_Vec.clear();
 			Image_Vec = Image_Vec_Copy; // Use the fresh copy.
+
 			--decrease_attempts;
-			++dec_val;
-			quality -= (decrease_attempts % 15 == 0) ? 2 : 0;
-			resizeImage(Image_Vec, quality, dec_val, decrease);
+			++decrease_dims_val;
+			quality_val -= (decrease_attempts % 15 == 0) ? 2 : 0;
+			resizeImage(Image_Vec, quality_val, decrease_dims_val, shouldDecreaseVals);
+
 			comment_block_pos = searchFunc(Image_Vec, 0, 0, COMMENT_BLOCK_SIG);
-			if (!decrease_attempts){
-		  	std::cerr << "\n\nImage Compatibility Error:\n\nProcedure failed to remove close-comment block sequences from cover image.\n"
-			   	 << "Try another image or use an editor such as GIMP to manually reduce (scale) image dimensions.\n\n";
-	          	return 1;
+
+			if (!decrease_attempts) {
+		  		std::cerr << "\n\nImage Compatibility Error:\n\nProcedure failed to remove close-comment block sequences from cover image.\n"
+			   		 << "Try another image or use an editor such as GIMP to manually reduce (scale) image dimensions.\n\n";
+	          		return 1;
 			}
 		}
 	}
 
-	std::cout << '\n';
+	std::vector<uint8_t>().swap(Image_Vec_Copy);
 
-	modified = decrease;
+	std::cout << '\n';
 
 	std::vector<uint8_t> 
 		CommentBlockString,
 		DefaultEndStringVec 	{ 0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x23, 0x3E, 0x0D, 0x23, 0x9e },
 		AltEndStringVec		{ 0x9e, 0x23, 0x3e, 0x0d, 0x23, 0x00, 0x00, 0x20, 0x20, 0x00, 0x00 }; // If the default string fails to be preserved, try this one (-alt option).
 
-	if (isAltOption) {
+	if (lastBlockString == ArgOption::Alt) {
 		CommentBlockString = AltEndStringVec;
 	} else {
 		CommentBlockString = DefaultEndStringVec;
@@ -136,6 +147,8 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 	constexpr uint8_t POWERSHELL_INSERT_INDEX = 6;
 
 	Profile_Vec.insert(Profile_Vec.end() - POWERSHELL_INSERT_INDEX, PowerShell_Vec.begin(), PowerShell_Vec.end());
+
+	std::vector<uint8_t>().swap(PowerShell_Vec);
 
 	uint8_t
 		bits = 16,	
@@ -172,7 +185,7 @@ int jpws(const std::string& IMAGE_FILENAME, std::string& powershell_filename, bo
 		return 1;
 	}
 
-	if (modified) {
+	if (isImageModified) {
 		std::cout << "\nComment-block close sequences succesfully removed from image.\n"
 			  << "\nPlease check to make sure size & quality of cover image is acceptable.\n";
 	}

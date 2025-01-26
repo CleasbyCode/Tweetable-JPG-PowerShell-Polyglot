@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <filesystem>
 #include <random>
+#include <set>
 #include <cstdint>
 #include <fstream>
 #include <regex>
@@ -34,7 +35,7 @@ bool writeFile(std::vector<uint8_t>&);
 
 void
 	eraseSegments(std::vector<uint8_t>&),
-	resizeImage(std::vector<uint8_t>&, uint8_t, uint8_t, bool),
+	resizeImage(std::vector<uint8_t>&, uint8_t, uint16_t, bool),
 	displayInfo();
 
-int jpws(const std::string&, std::string&, bool);
+int jpws(const std::string&, const std::string&, ArgOption);

@@ -4,8 +4,7 @@
 // stb_image by Sean Barrett (“nothings”).
 // https://github.com/nothings/stb
 
-
-void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_val, bool decrease)
+void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality_val, uint16_t decrease_dims_val, bool shouldDecreaseVals)
 {
     tjhandle decompressor = tjInitDecompress();
     if (!decompressor) {
@@ -28,9 +27,9 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_v
         throw std::runtime_error(std::string("tjDecompressHeader3: ") + tjGetErrorStr());
     }
 
-    if (width < dec_val || height < dec_val) {
+    if (width < decrease_dims_val || height < decrease_dims_val) {
         tjDestroy(decompressor);
-        throw std::runtime_error("Image is too small to shrink by 1 pixel.");
+        throw std::runtime_error("Image is too small to decrease by 1 pixel.");
     }
 
     const int channels = 3;
@@ -57,16 +56,16 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_v
     int newWidth = 0;
     int newHeight = 0;
 
-    if (decrease) {
-        newWidth  = width  - dec_val;
-        newHeight = height - dec_val;
+    if (shouldDecreaseVals) {
+        newWidth  = width  - decrease_dims_val;
+        newHeight = height - decrease_dims_val;
     } else {
         newWidth  = width;
         newHeight = height;
     }
 
-    std::cout << "\r" << std::string(44, ' ') << "\r"; // Clear the line completely
-    std::cout << "Quality: " << (int)quality << "% | Width: " << newWidth << " | Height: " << newHeight << std::flush; 
+    std::cout << "\r" << std::string(44, ' ') << "\r"; 
+    std::cout << "Quality: " << (int)quality_val << "% | Width: " << newWidth << " | Height: " << newHeight << std::flush; 
 
     std::vector<uint8_t> resized(newWidth * newHeight * channels);
 
@@ -93,7 +92,6 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_v
 
     int flags = TJFLAG_PROGRESSIVE;  
 
-    // Use the detected jpegSubsamp directly
     if (tjCompress2(
             compressor,
             resized.data(),
@@ -103,8 +101,8 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality, uint8_t dec_v
             TJPF_RGB,
             &jpegBuf,
             &jpegSize,
-            jpegSubsamp,  // Use the detected subsampling here
-            quality,     
+            jpegSubsamp,  // Use the detected subsampling
+            quality_val,     
             flags
         ) != 0)
     {

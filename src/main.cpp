@@ -8,9 +8,15 @@
 // 	Run it:
 // 	$ jpws
 
+enum class ArgOption {
+	Default,
+	Alt
+};
+
 #include "jpws.h"
 
 int main(int argc, char** argv) {
+
     if (argc == 2 && std::string(argv[1]) == "--info") {
         displayInfo();
         return 0;
@@ -21,45 +27,51 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    const bool
-	isAltOption = (argc > 3 && std::string(argv[1]) == "-alt"),
-	isInvalidOption = (argc > 3 && !isAltOption);
+    ArgOption lastBlockString = ArgOption::Default;
+    uint8_t argIndex = 1;
 
-     if (isInvalidOption) {
-        std::cerr << "\nInput Error: Invalid arguments. Expecting only \"-alt\" as the first optional argument.\n\n";
-        return 1;
+    if (argc == 4) {
+         if (std::string(argv[1]) != "-alt") {
+         std::cerr << "\nInput Error: Invalid arguments. Expecting \"-alt\" as the only optional argument.\n\n";
+         return 1;
+    	 }
+
+     	 lastBlockString = ArgOption::Alt;
+     	 argIndex = 2;
     }
 
-    const std::string IMAGE_FILENAME = isAltOption ? argv[2] : argv[1];
-    std::string powershell_filename  = isAltOption ? argv[3] : argv[2];
+    const std::string 
+	IMAGE_FILENAME = argv[argIndex],
+    	POWERSHELL_FILENAME = argv[++argIndex];
 
     constexpr const char* REG_EXP = ("(\\.[a-zA-Z_0-9\\.\\\\\\s\\-\\/]+)?[a-zA-Z_0-9\\.\\\\\\s\\-\\/]+?(\\.[a-zA-Z0-9]+)?");
     const std::regex regex_pattern(REG_EXP);
 
-    if (!std::regex_match(IMAGE_FILENAME, regex_pattern) || !std::regex_match(powershell_filename, regex_pattern)) {
+    if (!std::regex_match(IMAGE_FILENAME, regex_pattern) || !std::regex_match(POWERSHELL_FILENAME, regex_pattern)) {
         std::cerr << "\nInvalid Input Error: Characters not supported by this program found within filename arguments.\n\n";
         return 1;
     }
 
     const std::filesystem::path
         IMAGE_FILE_PATH(IMAGE_FILENAME),
-        POWERSHELL_FILE_PATH(powershell_filename);
+        POWERSHELL_FILE_PATH(POWERSHELL_FILENAME);
 
-    const std::string
-        IMAGE_EXTENSION = IMAGE_FILE_PATH.extension().string(),
-        POWERSHELL_EXTENSION = POWERSHELL_FILE_PATH.extension().string();
+    const std::string IMAGE_EXTENSION = IMAGE_FILE_PATH.extension().string();
 
-    if (IMAGE_EXTENSION != ".jpg" && IMAGE_EXTENSION != ".jpeg" && IMAGE_EXTENSION != ".jfif") {
+    const std::set<std::string> VALID_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".jfif"};
+    const std::string POWERSHELL_EXTENSION = ".ps1";
+
+    if (VALID_IMAGE_EXTENSIONS.find(IMAGE_EXTENSION) == VALID_IMAGE_EXTENSIONS.end())  {
 		std::cerr << "\nFile Type Error: Invalid file extension. Expecting only \".jpg, .jpeg or .jfif\" image extensions.\n\n";
         	return 1;
     }
 
-    if (POWERSHELL_EXTENSION != ".ps1") {
+    if (POWERSHELL_FILE_PATH.extension() != POWERSHELL_EXTENSION) {
 	std::cerr << "\nFile Type Error: Invalid file extension. Expecting only \".ps1\" PowerShell extension.\n\n";
         return 1;
     }
 
-    if (!std::filesystem::exists(IMAGE_FILENAME) || !std::filesystem::exists(powershell_filename) || !std::filesystem::is_regular_file(powershell_filename)) {
+    if (!std::filesystem::exists(IMAGE_FILENAME) || !std::filesystem::exists(POWERSHELL_FILENAME) || !std::filesystem::is_regular_file(POWERSHELL_FILENAME)) {
         std::cerr << (!std::filesystem::exists(IMAGE_FILENAME)
             ? "\nImage File Error: File not found."
             : "\nPowerShell File Error: File not found or not a regular file.")
@@ -67,5 +79,5 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    jpws(IMAGE_FILENAME, powershell_filename, isAltOption);
+    jpws(IMAGE_FILENAME, POWERSHELL_FILENAME, lastBlockString);
 }
