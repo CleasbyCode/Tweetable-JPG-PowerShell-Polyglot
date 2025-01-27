@@ -2,7 +2,7 @@
 
 // stb_image by Sean Barrett (“nothings”).
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
-#include "stb_image/stb_image_resize.h"
+#include "stb_image/stb_image_resize2.h"
 // https://github.com/nothings/stb
 
 // This software is based in part on the work of the Independent JPEG Group.
