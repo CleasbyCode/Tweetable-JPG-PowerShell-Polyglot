@@ -62,12 +62,12 @@ int main(int argc, char** argv) {
     const std::string POWERSHELL_EXTENSION = ".ps1";
 
     if (VALID_IMAGE_EXTENSIONS.find(IMAGE_EXTENSION) == VALID_IMAGE_EXTENSIONS.end())  {
-		std::cerr << "\nFile Type Error: Invalid file extension. Expecting only \".jpg, .jpeg or .jfif\" image extensions.\n\n";
+		std::cerr << "\nFile Type Error: Invalid file extension. Only expecting \".jpg, .jpeg or .jfif\" image extensions.\n\n";
         	return 1;
     }
 
     if (POWERSHELL_FILE_PATH.extension() != POWERSHELL_EXTENSION) {
-	std::cerr << "\nFile Type Error: Invalid file extension. Expecting only \".ps1\" PowerShell extension.\n\n";
+	std::cerr << "\nFile Type Error: Invalid file extension. Only expecting \".ps1\" PowerShell extension.\n\n";
         return 1;
     }
 
