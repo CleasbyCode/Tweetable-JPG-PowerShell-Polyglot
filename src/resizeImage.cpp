@@ -104,6 +104,7 @@ void resizeImage(std::vector<uint8_t>& Image_Vec, uint8_t quality_val, uint16_t 
             &jpegBuf,
             &jpegSize,
             jpegSubsamp,  // Use the detected subsampling
+            // TJSAMP_444,
             quality_val,     
             flags
         ) != 0)
