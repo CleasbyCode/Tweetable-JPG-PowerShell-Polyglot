@@ -3,7 +3,7 @@
 Embed a ***PowerShell*** script within a ***JPG*** image to create a tweetable ***JPG-PowerShell*** polyglot file.  
 
 ![Demo Image](https://github.com/CleasbyCode/jpws/blob/main/demo_image/jpws_46111.jpg)  
-***{Image Credit: [@awesome_visuals](https://x.com/awesome_visuals)} GameOfLife.ps1 embedded within this tweetable JPG image.***  
+***{Credits: Image "Rainbow Dragon" [Duncan Crombie / @theartofweb](https://x.com/awesome_visuals) PowerShell "text-sine.ps1" [Darren Shaw / @gierrofo](https://x.com/gierrofo)}***  
   
 ## Usage (***Linux***)
 
