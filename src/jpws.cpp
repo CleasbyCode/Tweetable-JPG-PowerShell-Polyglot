@@ -121,7 +121,7 @@ int jpws(const std::string& IMAGE_FILENAME, const std::string& POWERSHELL_FILENA
 
 			if (!decrease_attempts) {
 		  		std::cerr << "\n\nImage Compatibility Error:\n\nProcedure failed to remove close-comment block sequences from cover image.\n"
-			   		 << "Try another image or use an editor such as GIMP to manually reduce (scale) image dimensions.\n\n";
+			   		  << "Try another image or use an editor such as GIMP to manually reduce (scale) image dimensions.\n\n";
 	          		return 1;
 			}
 		}
