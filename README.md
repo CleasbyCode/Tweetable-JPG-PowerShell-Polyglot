@@ -25,7 +25,7 @@ Saved "PowerShell-embedded" JPG image: jpws_10247.jpg (121098 bytes).
 
 Complete!
 ```
-https://github.com/user-attachments/assets/2e49ea69-7e33-4b43-bcba-cb0a9678a4f7
+https://github.com/user-attachments/assets/f5b87dbf-885e-4cb5-a70c-5879c82f7e20
 
 ## How It Works
 
