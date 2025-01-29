@@ -76,6 +76,5 @@ int main(int argc, char** argv) {
             << " Check the filename and try again.\n\n";
 	    return 1;
     }
-
     jpws(IMAGE_FILENAME, POWERSHELL_FILENAME, lastBlockString);
 }
