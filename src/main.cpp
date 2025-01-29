@@ -56,12 +56,11 @@ int main(int argc, char** argv) {
         IMAGE_FILE_PATH(IMAGE_FILENAME),
         POWERSHELL_FILE_PATH(POWERSHELL_FILENAME);
 
-    const std::string IMAGE_EXTENSION = IMAGE_FILE_PATH.extension().string();
+    const std::string 
+	    IMAGE_EXTENSION = IMAGE_FILE_PATH.extension().string(),
+	    POWERSHELL_EXTENSION = ".ps1";
 
-    const std::set<std::string> VALID_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".jfif"};
-    const std::string POWERSHELL_EXTENSION = ".ps1";
-
-    if (VALID_IMAGE_EXTENSIONS.find(IMAGE_EXTENSION) == VALID_IMAGE_EXTENSIONS.end())  {
+    if (IMAGE_EXTENSION != ".jpg" && IMAGE_EXTENSION != ".jpeg" && IMAGE_EXTENSION != ".jfif")  {
 		std::cerr << "\nFile Type Error: Invalid file extension. Only expecting \".jpg, .jpeg or .jfif\" image extensions.\n\n";
         	return 1;
     }
