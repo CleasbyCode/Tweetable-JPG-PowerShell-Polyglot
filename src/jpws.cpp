@@ -167,12 +167,14 @@ int jpws(const std::string& IMAGE_FILENAME, const std::string& POWERSHELL_FILENA
 
 	Image_Vec.insert(Image_Vec.begin() + JIFF_SIG_LENGTH , Profile_Vec.begin(), Profile_Vec.end());
 
+	// Update the two byte segment size for the color profile (FFE2xx).
 	while (bits) {
 		Image_Vec[segment_size_field_index++] = (SEGMENT_SIZE >> (bits -= 8)) & 0xFF;
 	}
 
 	bits = 32;
 	
+	// Update the four byte size field of the color profile. 
 	while (bits) {
 		Image_Vec[profile_size_field_index++] = (PROFILE_SIZE >> (bits -= 8)) & 0xFF;
 	}
