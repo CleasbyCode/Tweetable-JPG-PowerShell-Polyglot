@@ -35,7 +35,6 @@ int main(int argc, char** argv) {
          std::cerr << "\nInput Error: Invalid arguments. Expecting \"-alt\" as the only optional argument.\n\n";
          return 1;
     	 }
-
      	 lastBlockString = ArgOption::Alt;
      	 argIndex = 2;
     }
@@ -48,8 +47,8 @@ int main(int argc, char** argv) {
     const std::regex regex_pattern(REG_EXP);
 
     if (!std::regex_match(IMAGE_FILENAME, regex_pattern) || !std::regex_match(POWERSHELL_FILENAME, regex_pattern)) {
-        std::cerr << "\nInvalid Input Error: Characters not supported by this program found within filename arguments.\n\n";
-        return 1;
+	    std::cerr << "\nInvalid Input Error: Characters not supported by this program found within filename arguments.\n\n";
+	    return 1;
     }
 
     const std::filesystem::path
@@ -61,21 +60,21 @@ int main(int argc, char** argv) {
 	    POWERSHELL_EXTENSION = ".ps1";
 
     if (IMAGE_EXTENSION != ".jpg" && IMAGE_EXTENSION != ".jpeg" && IMAGE_EXTENSION != ".jfif")  {
-		std::cerr << "\nFile Type Error: Invalid file extension. Only expecting \".jpg, .jpeg or .jfif\" image extensions.\n\n";
-        	return 1;
+	    std::cerr << "\nFile Type Error: Invalid file extension. Only expecting \".jpg, .jpeg or .jfif\" image extensions.\n\n";
+	    return 1;
     }
 
     if (POWERSHELL_FILE_PATH.extension() != POWERSHELL_EXTENSION) {
-	std::cerr << "\nFile Type Error: Invalid file extension. Only expecting \".ps1\" PowerShell extension.\n\n";
-        return 1;
+	    std::cerr << "\nFile Type Error: Invalid file extension. Only expecting \".ps1\" PowerShell extension.\n\n";
+	    return 1;
     }
 
     if (!std::filesystem::exists(IMAGE_FILENAME) || !std::filesystem::exists(POWERSHELL_FILENAME) || !std::filesystem::is_regular_file(POWERSHELL_FILENAME)) {
-        std::cerr << (!std::filesystem::exists(IMAGE_FILENAME)
-            ? "\nImage File Error: File not found."
-            : "\nPowerShell File Error: File not found or not a regular file.")
+	    std::cerr << (!std::filesystem::exists(IMAGE_FILENAME)
+		    ? "\nImage File Error: File not found."
+		    : "\nPowerShell File Error: File not found or not a regular file.")
             << " Check the filename and try again.\n\n";
-        return 1;
+	    return 1;
     }
 
     jpws(IMAGE_FILENAME, POWERSHELL_FILENAME, lastBlockString);
