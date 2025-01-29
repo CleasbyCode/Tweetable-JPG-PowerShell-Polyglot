@@ -143,6 +143,8 @@ G:\demo> ren jpws_85681.jpg jpws_85681.ps1
 G:\demo> Unblock-File jpws_85681.ps1 (Only required for downloaded images or images taken from another machine).
 G:\demo> .\jpws_85681.ps1
 ```
+https://github.com/user-attachments/assets/2e49ea69-7e33-4b43-bcba-cb0a9678a4f7
+
 ## Third-Party Libraries
 
 This project makes use of the following third-party libraries:  
